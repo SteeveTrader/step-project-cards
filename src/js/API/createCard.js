@@ -26,6 +26,8 @@ async function createCard() {
         'Authorization': `Bearer ${token}`
       }
     })
+
+    // беремо токен  з local.storage
     idCard = +1;
     console.log(idCard);
 
