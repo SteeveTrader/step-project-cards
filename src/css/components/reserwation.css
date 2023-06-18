@@ -1,0 +1,38 @@
+* {
+    margin: 0 auto;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+h2, h3 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.reserwation {
+    background-image: url(../../img/bg.jpg);
+    background-repeat: no-repeat;
+    width: 1200px;
+    height: 1200px;
+}
+
+.reserwation__container {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 24px;
+}
+
+img, input, button {
+    margin-bottom: 10px;
+}
