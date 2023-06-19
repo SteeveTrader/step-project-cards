@@ -20,9 +20,10 @@ h2, h3 {
 
 .reserwation {
     background-image: url(../../img/bg.jpg);
+    background-size: cover;
     background-repeat: no-repeat;
     width: 1200px;
-    height: 1200px;
+    min-height: 1200px;
 }
 
 .reserwation__container {
