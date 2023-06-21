@@ -51,8 +51,24 @@
         this.cardContainer.append(this.card);
     }
 
+    eventlistner(){
+        this.showMorebtn.addEventListener('click', () => {
+            this.showMorebtn.style.display = 'none';
+            this.card.insertAdjacentHTML("beforeend", `
+            <div class="reserwation__card-additional-info">
+                <p class="reserwation__card-urgency">Urgency: ${this.urgency}</p>
+
+                <p class="reserwation__card-purpose">Purpose: ${this.purpose}</p>
+
+                <p class="reserwation__card-description">Description: <br>${this.description}</p>
+            </div>
+            `);
+        });
+
+    }
     render() {
         this.createElement();
+        this.eventlistner();
         this.container.append(this.cardContainer);
     }
  }
