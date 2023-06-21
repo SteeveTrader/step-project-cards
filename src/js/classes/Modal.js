@@ -14,17 +14,17 @@ export default class Modal {
     createElements() {
         this.modalWindow.classList.add('modal');
         this.modalBackground.classList.add('modal__background');
-        this.modalContainer.classList.add('modal__container');
+        this.modalContainer.classList.add('modal__main-container');
         this.modalCloseBtn.classList.add('modal__close');
         this.modalContentWrapper.classList.add('modal__content-wrapper');
         this.modalBtnWrapper.classList.add('modal__button-wrapper');
-        this.modalCloseBtn.innerHTML = 'Confirm';
+        this.modalCloseBtn.innerHTML = 'X';
     
         this.modalBtnOk.innerText = 'OK';
-        this.modalBtnOk.classList.add('modal__btn-ok');
+        this.modalBtnOk.classList.add('modal__confirm-btn');
 
         this.modalBtnCancel.innerText = 'Cancel';
-        this.modalBtnCancel.classList.add('modal__btn-cancel');
+        this.modalBtnCancel.classList.add('modal__cancel-btn');
         this.modalBtnCancel.addEventListener('click', () => this.close());
     
         this.modalCloseBtn.addEventListener('click', () => this.close());

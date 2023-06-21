@@ -1,7 +1,7 @@
-const createCardBtn = document.createElement('button');
-createCardBtn.innerText = 'Create Card';
-container.append(createCardBtn);
-createCardBtn.addEventListener('click', createCard)
+// const createCardBtn = document.createElement('button');
+// createCardBtn.innerText = 'Create Card';
+// container.append(createCardBtn);
+// createCardBtn.addEventListener('click', createCard)
 
 async function createCard() {
   try {
@@ -10,7 +10,7 @@ async function createCard() {
       id: `${ idCard }`,
       doctor: 'Кардиолог',
       visitIssue: 'цель визита',
-      visitDiscription: 'краткое описание визита',
+      visitDescription: 'краткое описание визита',
       visitPrority: 'выпадающее поле - срочность',
       fullName: 'ФИО',
       bloodPreasure: 'обычное давление',
@@ -37,6 +37,7 @@ async function createCard() {
   }
 
 }
+
 
 
 
