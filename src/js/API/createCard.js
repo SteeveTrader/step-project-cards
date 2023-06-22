@@ -1,4 +1,5 @@
 import { urlCards, TOKEN } from "./variables.js";
+import { cardsArray } from "./serverRequest.js";
 
 export function createCard() {
   axios.post(urlCards, {
@@ -16,11 +17,12 @@ export function createCard() {
   }, {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': Bearer ${TOKEN}
+      'Authorization': `Bearer ${TOKEN}`
     }
   })
     .then(response => {
-      console.log(cardArray);
+      cardsArray.push(response.data.id);
+console.log(cardsArray);
     })
     .catch(error => {
       console.log(error);

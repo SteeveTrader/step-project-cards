@@ -1,18 +1,20 @@
 import { urlCards, TOKEN } from "./variables.js";
 
-const checkBtn = document.querySelector('.checkArray');
-const container = document.querySelector('.container');
-checkBtn.addEventListener("click", fetchData)
-
+export const cardsArray = [];
 export function fetchData() {
+  
   axios.get(urlCards, {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': Bearer ${TOKEN}
+      'Authorization': `Bearer ${TOKEN}`
     }
   })
     .then(response => {
-      const cardsArray = response.data;
+      // const cardsArray = response.data;
+      response.data.forEach(element => {
+        cardsArray.push(element)
+        
+      });
       console.log(cardsArray);
       if (cardsArray.length == 0) {
         renderEmptyArray();
