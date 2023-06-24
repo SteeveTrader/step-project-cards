@@ -1,3 +1,4 @@
+
 import VisitForm from "./VisitForm.js";
 
 export default class VisitCardiologist extends VisitForm {
@@ -44,3 +45,4 @@ export default class VisitCardiologist extends VisitForm {
     this.visitWrapper.insertAdjacentElement("beforeend", this.comments);
   }
 };
+
