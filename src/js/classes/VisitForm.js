@@ -39,6 +39,12 @@ export default class VisitForm {
         <option value = "low">Low</option>
         `;
         
+        this.selectDoctor = `
+        <option value = "default">chose the doctor</option>
+        <option value = "normal">crdiologist</option>
+        <option value = "high">...</option>
+        <option value = "low">....</option>
+        `;
         this.form.innerHTML = this.selectOptions;
         this.form.classList.add('visit-options');
         this.urgency.innerHTML= '<p>Терміновість візиту</p>';

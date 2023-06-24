@@ -3,7 +3,6 @@ import VisitForm from './classes/VisitForm.js';
 import VisitCardiologist from './classes/VisitCardiologist.js';
 import VisitDantist from './classes/VisitDantist.js';
 import VisitTherapist from './classes/VisitTherapist.js';
-import Visit from './classes/Visit.js';
 import CardHtml from './classes/cardHtml.js';
 import loginFunction from './API/logInFunction.js';
 import LoginForm from './classes/loginForm.js';
@@ -16,18 +15,8 @@ const cardContainer = document.querySelector(".reserwation__card-container");
 const loginBtn = document.querySelector('.js-login-btn');
 const addElemBtn = document.querySelector('.js-create-elem-btn');
 
-
-  // const modal = new Modal();
-  // const modalContainer = document.getElementById('modalContainer');
-  // modalContainer.appendChild(modal.render());
-
-  //   const visit = new Visit();
-  //   const visitFormContainer = document.getElementById('visitForm');
-  //   const visitFormHTML = visit.render().outerHTML;
-  //   visitFormContainer.innerHTML = visitFormHTML;
-
   loginBtn.addEventListener("click", () => {
-    const form = new LoginForm("Login");
+    const form = new LoginForm("Log In");
 
     const confirmCallback = async (close) => {
         const body = form.getValues();
@@ -37,7 +26,28 @@ const addElemBtn = document.querySelector('.js-create-elem-btn');
         close();
         checkToken();
     };
-
     new Modal(form.getFormElement(), confirmCallback).render();
 
 });
+
+// addElemBtn.addEventListener("click", () => {
+//   // const form = new VisitForm("Add Visit");
+
+
+// });
+
+// submitbtnAddElem.addEventListener("click", () => {
+
+//   // фунція яка збирає дані з форми пушить в масив + вдправка даних на сервер 
+
+//   // потім повертає всі картки з сервера і в serverRewuest функція 
+//   // renderEmptyArray() перевіряє чи пустий масив і відмальовує інформацію на сайті або 
+//   // або виконує на локальний масив.forEach(elem => {
+//   //   new CardHtml("Less", "jhdsfkjdlfsdl", "Hot", "Jhon Doe", "Stan Smith").render();
+//   // });
+
+  
+
+//   // new Modal(form.getFormElement(), confirmCallback).render();
+
+// });
