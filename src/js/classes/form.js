@@ -6,13 +6,13 @@ export default class Form {
     }
 
     createElement() {
-        this.form.className = 'login-form';
+        this.form.className = 'input-visit-form';
         this.formTitle.innerText = this.title;
         this.form.append(this.formTitle);
     }
 
     getValues() {
-        const inputs = this.form.querySelectorAll('input');
+        const inputs = this.form.querySelectorAll('input, select');
         const body = {};
 
         inputs.forEach(input => {

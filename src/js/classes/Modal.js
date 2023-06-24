@@ -22,6 +22,7 @@ export default class Modal {
         this.modalCloseBtn.innerHTML = 'X';
     
         this.modalBtnOk.innerText = 'OK';
+        this.modalBtnOk.setAttribute("type", "submit");
         this.modalBtnOk.classList.add('modal__confirm-btn');
 
         this.modalBtnCancel.innerText = 'Cancel';

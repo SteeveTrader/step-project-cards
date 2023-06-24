@@ -8,6 +8,6 @@ const loginFunction = async (body) => {
         console.log('Error', err);
     }
     
-}
+};
 
 export default loginFunction;
