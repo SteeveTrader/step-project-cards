@@ -1,4 +1,8 @@
 import Modal from './classes/Modal.js';
+import VisitForm from './classes/VisitForm.js';
+import VisitCardiologist from './classes/VisitCardiologist.js';
+import VisitDantist from './classes/VisitDantist.js';
+import VisitTherapist from './classes/VisitTherapist.js';
 import Visit from './classes/Visit.js';
 import CardHtml from './classes/cardHtml.js';
 import loginFunction from './API/logInFunction.js';
@@ -37,6 +41,3 @@ const addElemBtn = document.querySelector('.js-create-elem-btn');
     new Modal(form.getFormElement(), confirmCallback).render();
 
 });
-
-
-

@@ -1,18 +1,14 @@
 
-export default class Visit {
+export default class VisitForm {
     constructor() {
         this.visitWrapper = document.createElement('div');
         this.purpose = document.createElement('input');
         this.description = document.createElement('input');
         this.name = document.createElement('input');
         this.urgency = document.createElement('div');        
-        this.select = document.createElement('select');
-        this.select.name = 'urgency';  
-        this.selectOptions = `
-        <option value = "normal">Normal</option>
-        <option value = "high">High</option>
-        <option value = "low">Low</option>
-        `;
+        this.form = document.createElement('form');
+        this.form.name = 'urgency';  
+
     }
     
     createElements() {
@@ -36,12 +32,19 @@ export default class Visit {
         this.name.required = true;
         this.visitWrapper.insertAdjacentElement('afterbegin', this.name);
 
-        this.select.innerHTML = this.selectOptions;
-        this.select.classList.add('visit-options');
-        this.urgency.innerHTML= '<p>Терміновість візиту</p>';
-        this.urgency.className = 'visit-urgency';
+        this.selectOptions = `
+        <option value = "default">Make your chose</option>
+        <option value = "normal">Normal</option>
+        <option value = "high">High</option>
+        <option value = "low">Low</option>
+        `;
         
-        this.urgency.append(this.select);
+        this.form.innerHTML = this.selectOptions;
+        this.form.classList.add('visit-options');
+        this.urgency.innerHTML= '<p>Терміновість візиту</p>';
+        this.urgency.className = 'visitForm';
+        
+        this.urgency.append(this.form);
         
         this.visitWrapper.insertAdjacentElement('afterbegin', this.urgency);
     }
@@ -50,4 +53,4 @@ export default class Visit {
         this.createElements();
         return this.visitWrapper;
     }
-}
+};

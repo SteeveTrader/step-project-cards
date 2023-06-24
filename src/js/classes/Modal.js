@@ -1,4 +1,3 @@
-
 export default class Modal {
     constructor(elem, confirmFunction) {
         this.confirmFunction = confirmFunction;
@@ -70,5 +69,4 @@ export default class Modal {
       this.addListeners();
       document.body.append(this.modalWindow);
     }
-  }
-  
+}
