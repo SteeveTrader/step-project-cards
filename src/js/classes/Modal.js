@@ -1,6 +1,8 @@
 
 export default class Modal {
-    constructor() {
+    constructor(elem, confirmFunction) {
+        this.confirmFunction = confirmFunction;
+        this.elem = elem;
         this.modalWindow = document.createElement('div');
         this.modalBackground = document.createElement('div');
         this.modalContainer = document.createElement('div');
@@ -25,11 +27,7 @@ export default class Modal {
 
         this.modalBtnCancel.innerText = 'Cancel';
         this.modalBtnCancel.classList.add('modal__cancel-btn');
-        this.modalBtnCancel.addEventListener('click', () => this.close());
-    
-        this.modalCloseBtn.addEventListener('click', () => this.close());
-        this.modalBackground.addEventListener('click', () => this.close());
-    
+
         this.modalContainer.append(this.modalCloseBtn);
         this.modalContainer.append(this.modalContentWrapper);
         this.modalContainer.append(this.modalBtnWrapper);
@@ -37,7 +35,31 @@ export default class Modal {
         this.modalWindow.append(this.modalContainer);
         this.modalBtnWrapper.append(this.modalBtnOk);
         this.modalBtnWrapper.append(this.modalBtnCancel);
+
+        this.modalContentWrapper.append(this.elem);
     }
+
+
+    addListeners() {
+      this.modalCloseBtn.addEventListener('click', () => {
+          this.close();
+      });
+
+      this.modalBackground.addEventListener('click', () => {
+          this.close();
+      });
+
+      this.modalBtnCancel.addEventListener('click', () => {
+        this.close();
+    });
+
+      this.modalBtnOk.addEventListener('click', () => {
+          this.confirmFunction(() => {
+              this.close();
+          });
+      });
+  }
+
   
     close() {
       this.modalWindow.remove();
@@ -45,7 +67,8 @@ export default class Modal {
   
     render() {
       this.createElements();
-      return this.modalWindow;
+      this.addListeners();
+      document.body.append(this.modalWindow);
     }
   }
   
