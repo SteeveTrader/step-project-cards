@@ -215,8 +215,8 @@ export default function cardFilter() {
   }
 
   function displayResults(filteredArray) {
-    const cardsBody = document.querySelector('.cardsWrapper');
-    cardsBody.innerHTML = '';
+    const cardsBody = document.querySelectorAll('.cardContainer');
+    cardsBody.forEach(elem => elem.remove())
 
     filteredArray.forEach(item => {
       const filterCard = new FilterCard(item);
