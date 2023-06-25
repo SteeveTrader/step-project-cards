@@ -205,7 +205,7 @@ export default function cardFilter() {
       this.cardContainer.append(this.age);
       this.cardContainer.append(this.lastVisit);
 
-      const cardsBody = document.querySelector('.cardsWrapper');
+      const cardsBody = document.querySelector('.reserwation__container');
       cardsBody.append(this.cardContainer);
     }
 

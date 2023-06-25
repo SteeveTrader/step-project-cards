@@ -8,7 +8,7 @@ export function fetchData() {
   axios.get(urlCards, {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': Bearer ${TOKEN}
+      'Authorization': Bearer `${TOKEN}`
     }
   })
     .then(response => {
