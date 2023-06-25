@@ -9,7 +9,9 @@ import createCardAPI from './API/createCard.js';
 import LoginForm from './classes/loginForm.js';
 
 import checkToken from './functions/checkToken.js';
+import cardFilter from "./functions/filter.js";
 
+cardFilter()
 checkToken();
 
 const cardContainer = document.querySelector(".reserwation__card-container");

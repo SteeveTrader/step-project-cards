@@ -1,0 +1,63 @@
+ body {
+   line-height: 1;
+   box-sizing: border-box;
+ }
+
+ ol,
+ ul {
+   list-style: none;
+ }
+
+ a {
+   text-decoration: none;
+   color: inherit;
+ }
+
+ .visitDescriptionFilter {
+   margin-top: 100px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+ }
+
+ .visitDescriptionFilter label,
+ .visitDescriptionFilter input,
+ .visitDescriptionFilter select,
+ .visitDescriptionFilter button {
+   margin: 5px;
+ }
+
+ .visitDescriptionFilter input,
+ .visitDescriptionFilter select {
+   padding: 5px;
+ }
+
+ .visitDescriptionFilter .filterBtn {
+   background-color: #007bff;
+   color: #fff;
+   border: none;
+   padding: 10px 20px;
+   cursor: pointer;
+   border-radius: 15px;
+ }
+
+ .visitDescriptionFilter .filterBtn:hover {
+   background-color: #0056b3;
+   border-radius: 15px;
+ }
+
+ .cardContainer {
+   border: 1px solid #007bff;
+   border-radius: 5px;
+   padding: 10px;
+   margin-bottom: 10px;
+ }
+
+ .cardContainer p {
+   margin: 5px;
+ }
+
+ .cardContainer p:first-child {
+   font-weight: bold;
+ }
