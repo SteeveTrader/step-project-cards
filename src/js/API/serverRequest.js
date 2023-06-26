@@ -1,4 +1,4 @@
-import { urlCards, TOKEN } from "./variables.js";
+import { urlCards } from "./variables.js";
 
 const checkBtn = document.querySelector('.checkArray');
 const container = document.querySelector('.container');
@@ -8,7 +8,7 @@ export function fetchData() {
   axios.get(urlCards, {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': Bearer ${TOKEN}
+      'Authorization': Bearer `${localStorage.getItem('tokenKey')}`
     }
   })
     .then(response => {
