@@ -1,48 +1,25 @@
-
-import VisitForm from "./VisitForm.js";
+import VisitForm from "./makeVisitForm.js";
 
 export default class VisitCardiologist extends VisitForm {
-  constructor() {
-    super();
-    this.age = document.createElement("input");
-    this.pressure = document.createElement("input");
-    this.bodyIndex = document.createElement("input");
-    this.disease = document.createElement("input");
-    this.comments = document.createElement("input");
+  constructor(title) {
+    super(title);
+    
   }
 
-  createElements() {
-    super.createElements();
+  createElement() {
+    // super.createElement();
 
-    this.age.setAttribute("name", "age");
-    this.pressure.setAttribute("name", "bp");
-    this.bodyIndex.setAttribute("name", "bi");
-    this.disease.setAttribute("name", "disease");
-    this.comments.setAttribute("name", "comments");
+    // this.form.insertAdjacentHTML('beforeend', this.visitInpputs);   
 
-    this.age.className.add("visit-options");
-    this.age.placeholder = "Вік";
-    this.age.required = true;
-    this.visitWrapper.insertAdjacentElement("beforeend", this.age);
+    this.additionalInputs = `
+        <input type="text" required name="age" placeholder="Age">
+        <input type="text" required name="blood-press" placeholder="Blood pressure">
+        <input type="text" required name="body-index" placeholder="Body Index">
+        <input type="text" required name="diseases" placeholder="Сardiovascular diseases">
+    `;
 
-    this.pressure.className.add("visit-options");
-    this.pressure.placeholder = "Кров`яний тиск";
-    this.pressure.required = true;
-    this.visitWrapper.insertAdjacentElement("beforeend", this.pressure);
+    this.form.insertAdjacentHTML('beforeend', this.additionalInputs);
 
-    this.bodyIndex.className.add("visit-options");
-    this.bodyIndex.placeholder = "ІМТ";
-    this.bodyIndex.required = true;
-    this.visitWrapper.insertAdjacentElement("beforeend", this.bodyIndex);
-
-    this.disease.className.add("visit-options");
-    this.disease.placeholder = "Захворбвання";
-    this.disease.required = true;
-    this.visitWrapper.insertAdjacentElement("beforeend", this.disease);
-
-    this.comments.classList.add("visit-options");
-    this.icomments.placeholder = "Комментарі";
-    this.visitWrapper.insertAdjacentElement("beforeend", this.comments);
   }
-};
+}
 

@@ -1,5 +1,5 @@
-import VisitForm from "./VisitForm.js";
-export default class VisitDantist extends VisitForm {
+import VisitForm from "./makeVisitForm.js";
+export default class VisitDentist extends VisitForm {
   constructor() {
     super();
     this.date = document.createElement("input");
@@ -8,16 +8,12 @@ export default class VisitDantist extends VisitForm {
 
   createElements() {
     super.createElements();
-    this.date.setAttribute("name", "data");
-    this.date.classList.add("visit-options");
-    this.date.required = true;
-    this.date.placeholder = "Дата останнього візиту";
-    this.date.name = "lastVisit";
-    this.visitWrapper.insertAdjacentElement("beforeend", this.inputDate);
 
-    this.comments.classList.add("visit-options");
-    this.ccomments.placeholder = "Комментарі";
-    this.comments.name = "comments";
-    this.visitWrapper.insertAdjacentElement("beforeend", this.comments);
+    this.additionalInputs = `
+        <input type="date" required name="lastVisit" placeholder="Last Visit">
+
+    `;
+
+    this.form.insertAdjacentHTML('beforeend', this.additionalInputs);
   }
-};
+}

@@ -1,4 +1,4 @@
-import VisitForm from "./VisitForm.js";
+import VisitForm from "./makeVisitForm.js";
 export default class VisitTherapist extends VisitForm {
     constructor() {
         super();
@@ -8,15 +8,12 @@ export default class VisitTherapist extends VisitForm {
     
     createElements() {
         super.createElements();
-        this.age.setAttribute('name', 'age');
-        this.agege.classList.add('visit-options');     
-        this.age.placeholder = 'Вік';
-        this.age.required = true;
-        this.visitWrapper.insertAdjacentElement('beforeend', this.age);
 
-        this.comments.classList.add('doctor__input'); 
-        this.comments.placeholder = 'Комментарии';
-        this.comments.name = 'comments';
-        this.visitWrapper.insertAdjacentElement('beforeend', this.comments);
+        this.additionalInputs = `
+            <input type="number" required name="dateOfBirth" placeholder="Date of Birth">
+    
+        `;
+    
+        this.form.insertAdjacentHTML('beforeend', this.additionalInputs);
     }    
-};
+}
