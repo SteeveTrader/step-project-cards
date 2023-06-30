@@ -14,8 +14,9 @@
  }
 
  .visitDescriptionFilter {
-   margin-top: 100px;
-   display: flex;
+   left: 20%;
+   right: 20%;
+   position: fixed;
    align-items: center;
    justify-content: center;
 
@@ -60,4 +61,20 @@
 
  .cardContainer p:first-child {
    font-weight: bold;
+ }
+
+ .visitDescriptionFilter_inputs {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+ }
+
+ .filterBtn{
+  width: 90%;
+ }
+
+ .visitDescriptionFilter_searshBtn{
+  display: flex;
+    align-items: center;
+    justify-content: center;
  }

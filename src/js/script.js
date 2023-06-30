@@ -7,9 +7,10 @@ import CardHtml from './classes/cardHtml.js';
 import loginFunction from './API/logInFunction.js';
 import createCardAPI from './API/createCard.js';
 import LoginForm from './classes/loginForm.js';
-
+import removeCard from './functions/removeCard.js';
 import checkToken from './functions/checkToken.js';
 import cardFilter from "./functions/filter.js";
+import deleteCard from './functions/removeCard.js';
 
 cardFilter()
 checkToken();
@@ -57,4 +58,7 @@ addElemBtn.addEventListener("click", () => {
  
 
 });
+
+
+deleteCard()
 

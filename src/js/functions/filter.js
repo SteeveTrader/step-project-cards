@@ -1,3 +1,5 @@
+import CardHtml from "../classes/cardHtml.js";
+import deleteCard from '../functions/removeCard.js';
 export default function cardFilter() {
 
 
@@ -5,132 +7,132 @@ export default function cardFilter() {
     {
       id: 1,
       doctor: 'therapist',
-      visitIssue: 'Проблеми is залозою',
-      visitDiscription: 'Болить горло, підвищена температура',
-      visitPriority: 'Терміновий',
+      purpose: 'Проблеми is залозою',
+      description: 'Болить горло, підвищена температура',
+      urgency: 'Терміновий',
       fullName: 'Олексій Петров',
-      bloodPreasure: '120/80',
+      pressure: '120/80',
       bodyIndex: '22',
-      history: 'Немає',
+      disease: 'Немає',
       age: '42',
-      lastVisit: '2023-06-20',
+      date: '2023-06-20',
     },
     {
       id: 2,
       doctor: 'cardiologist',
-      visitIssue: 'Біль у грудях',
-      visitDiscription: 'Болісне відчуття у серцевій області',
-      visitPriority: 'Невідкладний',
+      purpose: 'Біль у грудях',
+      description: 'Болісне відчуття у серцевій області',
+      urgency: 'Невідкладний',
       fullName: 'Марина Сидоренко',
-      bloodPreasure: '130/90',
+      pressure: '130/90',
       bodyIndex: '25',
-      history: 'Артеріальна гіпертензія',
+      disease: 'Артеріальна гіпертензія',
       age: '57',
-      lastVisit: '2023-06-18',
+      date: '2023-06-18',
     },
     {
       id: 3,
       doctor: 'dantist',
-      visitIssue: 'Зубний камінь',
-      visitDiscription: 'Наявність відкладень на зубах',
-      visitPriority: 'Звичайний',
+      purpose: 'Зубний камінь',
+      description: 'Наявність відкладень на зубах',
+      urgency: 'Звичайний',
       fullName: 'Олег Іванов',
-      bloodPreasure: '110/70',
+      pressure: '110/70',
       bodyIndex: '24',
-      history: 'Карієс',
+      disease: 'Карієс',
       age: '35',
-      lastVisit: '2023-05-15',
+      date: '2023-05-15',
     },
     {
       id: 4,
       doctor: 'therapist',
-      visitIssue: 'Передача аналізів',
-      visitDiscription: 'Здача загального аналізу крові',
-      visitPriority: 'Звичайний',
+      purpose: 'Передача аналізів',
+      description: 'Здача загального аналізу крові',
+      urgency: 'Звичайний',
       fullName: 'Марія Новак',
-      bloodPreasure: '120/80',
+      pressure: '120/80',
       bodyIndex: '22',
-      history: 'Немає',
+      disease: 'Немає',
       age: '29',
-      lastVisit: '2023-06-10',
+      date: '2023-06-10',
     },
     {
       id: 5,
       doctor: 'cardiologist',
-      visitIssue: 'Контроль артеріального тиску',
-      visitDiscription: 'Перевірка показників АТ і ведення журналу',
-      visitPriority: 'Звичайний',
+      purpose: 'Контроль артеріального тиску',
+      description: 'Перевірка показників АТ і ведення журналу',
+      urgency: 'Звичайний',
       fullName: 'Ольга Коваль',
-      bloodPreasure: '130/80',
+      pressure: '130/80',
       bodyIndex: '26',
-      history: 'Артеріальна гіпертензія',
+      disease: 'Артеріальна гіпертензія',
       age: '48',
-      lastVisit: '2023-06-15',
+      date: '2023-06-15',
     },
     {
       id: 6,
       doctor: 'therapist',
-      visitIssue: 'Профілактичний огляд',
-      visitDiscription: 'Плановий огляд з метою профілактики захворювань',
-      visitPriority: 'Звичайний',
+      purpose: 'Профілактичний огляд',
+      description: 'Плановий огляд з метою профілактики захворювань',
+      urgency: 'Звичайний',
       fullName: 'Ігор Савченко',
-      bloodPreasure: '120/70',
+      pressure: '120/70',
       bodyIndex: '23',
-      history: 'Немає',
+      disease: 'Немає',
       age: '36',
-      lastVisit: '2023-04-25',
+      date: '2023-04-25',
     },
     {
       id: 7,
       doctor: 'dantist',
-      visitIssue: 'Лікування карієсу',
-      visitDiscription: 'Потрібне лікування та заповнення каріозних порожнин',
-      visitPriority: 'Терміновий',
+      purpose: 'Лікування карієсу',
+      description: 'Потрібне лікування та заповнення каріозних порожнин',
+      urgency: 'Терміновий',
       fullName: 'Анна Литвин',
-      bloodPreasure: '110/70',
+      pressure: '110/70',
       bodyIndex: '24',
-      history: 'Карієс',
+      disease: 'Карієс',
       age: '31',
-      lastVisit: '2023-06-22',
+      date: '2023-06-22',
     },
     {
       id: 8,
       doctor: 'cardiologist',
-      visitIssue: 'Перевірка функції серця',
-      visitDiscription: 'ЕКГ та перевірка стану серця',
-      visitPriority: 'Терміновий',
+      purpose: 'Перевірка функції серця',
+      description: 'ЕКГ та перевірка стану серця',
+      urgency: 'Терміновий',
       fullName: 'Василь Лещенко',
-      bloodPreasure: '130/90',
+      pressure: '130/90',
       bodyIndex: '27',
-      history: 'Артеріальна гіпертензія',
+      disease: 'Артеріальна гіпертензія',
       age: '52',
-      lastVisit: '2023-06-21',
+      date: '2023-06-21',
     },
     {
       id: 9,
       doctor: 'therapist',
-      visitIssue: 'Огляд після захворювання',
-      visitDiscription: 'Контрольний огляд після перенесеної хвороби',
-      visitPriority: 'Звичайний',
+      purpose: 'Огляд після захворювання',
+      description: 'Контрольний огляд після перенесеної хвороби',
+      urgency: 'Звичайний',
       fullName: 'Тетяна Шевченко',
-      bloodPreasure: '120/80',
+      pressure: '120/80',
       bodyIndex: '25',
-      history: 'Респіраторна інфекція',
+      disease: 'Респіраторна інфекція',
       age: '43',
-      lastVisit: '2023-06-12',
+      date: '2023-06-12',
     },
     {
       id: 10,
-      doctor: 'dantist',
-      visitIssue: 'Планове чищення зубів',
-      visitDiscription: 'Необхідно провести планову гігієну ротової порожнини',
-      visitPriority: 'Звичайний',
+      doctor: 'cardiologist',
+      purpose: 'Планове чищення зубів',
+      description: 'Необхідно провести планову гігієну ротової порожнини',
+      urgency: 'Звичайний',
       fullName: 'Олена Мельник',
-      bloodPreasure: '110/70',
+      pressure: '110/70',
       bodyIndex: '24',
-      history: 'Немає',
+      disease: 'Немає',
       age: '27',
-      lastVisit: '2023-06-23',
+      date: '2023-06-23',
     },
   ];
 
@@ -138,10 +140,10 @@ export default function cardFilter() {
   searchBtn.addEventListener('click', filterArray);
 
   function filterArray() {
-    const doctor = document.getElementById('doctor').value;
-    const fullName = document.getElementById('fullName').value.trim().toLowerCase();
-    const visitPriority = document.getElementById('visitPriority').value;
-    const visitDiscription = document.getElementById('visitDiscription').value.trim().toLowerCase();
+    const doctor = document.getElementById('doctorFilter').value;
+    const fullName = document.getElementById('fullNameFilter').value.trim().toLowerCase();
+    const urgency = document.getElementById('urgencyFilter').value;
+    const description = document.getElementById('description').value.trim().toLowerCase();
 
     const filteredArray = array.filter(item => {
       if (doctor && item.doctor !== doctor) {
@@ -150,79 +152,31 @@ export default function cardFilter() {
       if (fullName && !item.fullName.toLowerCase().includes(fullName)) {
         return false;
       }
-      if (visitPriority && item.visitPriority !== visitPriority) {
+      if (urgency && item.urgency !== urgency) {
         return false;
       }
-      if (visitDiscription && !item.visitDiscription.toLowerCase().includes(visitDiscription)) {
+      if (description && !item.description.toLowerCase().includes(description)) {
         return false;
       }
       return true;
     });
 
     displayResults(filteredArray);
-
-  }
-
-  class FilterCard {
-    constructor(item) {
-      this.cardContainer = document.createElement('div');
-      this.doctor = document.createElement('p');
-      this.fullName = document.createElement('p');
-      this.visitIssue = document.createElement('p');
-      this.visitDiscription = document.createElement('p');
-      this.visitPriority = document.createElement('p');
-      this.bloodPreasure = document.createElement('p');
-      this.bodyIndex = document.createElement('p');
-      this.history = document.createElement('p');
-      this.age = document.createElement('p');
-      this.lastVisit = document.createElement('p');
-      this.item = item;
-
-    }
-
-    createElements() {
-      this.cardContainer.classList.add('cardContainer');
-
-      this.doctor.innerText = `Доктор: ${this.item.doctor}`;
-      this.visitIssue.innerText = `Ціль візиту: ${this.item.visitIssue}`;
-      this.visitDiscription.innerText = `Опис візиту: ${this.item.visitDiscription}`;
-      this.visitPriority.innerText = `Пріоритетність візиту: ${this.item.visitPriority}`;
-      this.fullName.innerText = `Ім'я пацієнта: ${this.item.fullName}`;
-      this.bloodPreasure.innerText = `Тиск: ${this.item.bloodPreasure}`;
-      this.bodyIndex.innerText = `Індекс маси тіла: ${this.item.bodyIndex}`;
-      this.history.innerText = `Історія хвороби: ${this.item.history}`;
-      this.age.innerText = `Вік пацієнта: ${this.item.age}`;
-      this.lastVisit.innerText = `Дата останнього візиту: ${this.item.lastVisit}`;
-
-      this.cardContainer.append(this.doctor);
-      this.cardContainer.append(this.fullName);
-      this.cardContainer.append(this.visitIssue);
-      this.cardContainer.append(this.visitDiscription);
-      this.cardContainer.append(this.visitPriority);
-      this.cardContainer.append(this.bloodPreasure);
-      this.cardContainer.append(this.bodyIndex);
-      this.cardContainer.append(this.history);
-      this.cardContainer.append(this.age);
-      this.cardContainer.append(this.lastVisit);
-
-      const cardsBody = document.querySelector('.reserwation__container');
-      cardsBody.append(this.cardContainer);
-    }
-
-    render() {
-      this.createElements();
-    }
+    deleteCard(filteredArray);
   }
 
   function displayResults(filteredArray) {
-    const cardsBody = document.querySelectorAll('.cardContainer');
+    const cardsBody = document.querySelectorAll('.reserwation__card-container');
     cardsBody.forEach(elem => elem.remove())
-
-    filteredArray.forEach(item => {
-      const filterCard = new FilterCard(item);
+    console.log(filteredArray);
+    filteredArray.forEach(({ purpose, description, urgency, fullName, doctor, id }) => {
+      const filterCard = new CardHtml(purpose, description, urgency, fullName, doctor, id);
+      filterCard.createElement();
       filterCard.render();
     });
   }
 
 }
+
+
 
