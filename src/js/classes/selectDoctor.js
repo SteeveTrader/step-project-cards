@@ -1,24 +1,25 @@
-import Modal from "./Modal.js";
+import Form from "./form.js";
 
-export default class VisitModal extends Modal {
-    constructor(elem, confirmFunction) {
-        super(elem, confirmFunction);
+export default class SelectDoctor extends Form {
+    constructor(title) {
+        super(title);
         this.select = document.createElement('select');
-      }
 
-    createElements() {
-        super.createElements();
-        this.select.className = 'modal-select';
+    }
+    createElement() {
+        super.createElement();
+
+        this.select.className = 'modal__select';
         this.select.setAttribute("name", "doctor");
         const options = `
                 <option value="" selected="">Chose a doctor</option>
                 <option value="cardiologist">Cardiologist</option>
-                <option value="dantist">Dantist</option>
+                <option value="dentist">Dentist</option>
                 <option value="therapist">Therapist</option>
         `;
 
         this.select.innerHTML =  options;
-        this.modalContentWrapper.prepend(this.select);
+        this.form.append(this.select);
     }
-    
+
 }

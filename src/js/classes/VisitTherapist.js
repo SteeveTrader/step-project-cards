@@ -1,9 +1,7 @@
 import VisitForm from "./makeVisitForm.js";
 export default class VisitTherapist extends VisitForm {
-    constructor() {
-        super();
-        this.age = document.createElement('input');
-        this.comments = document.createElement('input');
+    constructor(title) {
+        super(title);
     }
     
     createElements() {

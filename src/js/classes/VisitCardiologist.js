@@ -7,7 +7,7 @@ export default class VisitCardiologist extends VisitForm {
   }
 
   createElement() {
-    // super.createElement();
+    super.createElement();
 
     // this.form.insertAdjacentHTML('beforeend', this.visitInpputs);   
 
