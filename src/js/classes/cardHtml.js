@@ -1,10 +1,11 @@
- export default class CardHtml {
-    constructor(purpose, description, urgency, fullname, doctor) {
+export default class CardHtml {
+    constructor(purpose, description, urgency, fullName, doctor, id) {
         this.purpose = purpose;
         this.description = description;
         this.urgency = urgency;
-        this.fullname = fullname; 
+        this.fullName = fullName;
         this.doctor = doctor;
+        this.id = id;
         this.container = document.querySelector(".reserwation__container");
         this.cardContainer = document.createElement("div");
         this.cardDoctorContainer = document.createElement("div");
@@ -18,12 +19,13 @@
     createElement() {
         this.card.className = "reserwation__card";
         this.cardContainer.className = "reserwation__card-container";
+        this.cardContainer.setAttribute('id', this.id);
         this.cardDoctorContainer.className = "reserwation__card-doctor";
         this.editBtn.className = "reserwation__edit-btn";
         this.deleteBtn.className = "reserwation__delete-btn";
-        this.showMorebtn.classList.add("reserwation__show-info-btn","btn");
+        this.showMorebtn.classList.add("reserwation__show-info-btn", "btn");
         this.btnContainer.className = "reserwation__btn-container";
-        
+
         this.showMorebtn.innerText = "Show more";
         this.editBtn.innerHTML = `
         <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
@@ -46,12 +48,12 @@
         this.cardDoctorContainer.insertAdjacentHTML("afterbegin", `<h2>${this.doctor}</h2>`);
         this.cardDoctorContainer.append(this.btnContainer);
         this.card.append(this.cardDoctorContainer);
-        this.card.insertAdjacentHTML("beforeend", `<p class="reserwation__card-patient-name">${this.fullname}</p>`);
+        this.card.insertAdjacentHTML("beforeend", `<p class="reserwation__card-patient-name">${this.fullName}</p>`);
         this.card.append(this.showMorebtn);
         this.cardContainer.append(this.card);
     }
 
-    eventlistner(){
+    eventlistner() {
         this.showMorebtn.addEventListener('click', () => {
             this.showMorebtn.style.display = 'none';
             this.card.insertAdjacentHTML("beforeend", `
@@ -67,13 +69,15 @@
 
     }
 
-    
+
     render() {
-        this.createElement();
+        // this.createElement();
         this.eventlistner();
         this.container.append(this.cardContainer);
     }
- }
+}
 
 
-
+// const example = new CardHtml('purpose', 'description', 'urgency', 'fullname', 'John', '1');
+// example.createElement();
+// example.render();

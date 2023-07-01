@@ -7,19 +7,29 @@ import CardHtml from './classes/cardHtml.js';
 import loginFunction from './API/logInFunction.js';
 import createCardAPI from './API/createCard.js';
 import LoginForm from './classes/loginForm.js';
+import removeCard from './functions/removeCard.js';
 import { fetchData } from './API/serverRequest.js';
 import cardsData from './cardsData.js';
 
+
 import checkToken from './functions/checkToken.js';
 import cardFilter from "./functions/filter.js";
+import deleteCard from './functions/removeCard.js';
+import editCard from './functions/cardEditor.js';
+import serverRequest from './API/serverRequest.js';
 
 cardFilter();
 checkToken();
+deleteCard()
+editCard();
 
 const loginBtn = document.querySelector('.js-login-btn');
 const addElemBtn = document.querySelector('.js-create-elem-btn');
 
 loginBtn.addEventListener("click", () => {
+
+  // editCard function + new funct takeValues (атрибут для input "автозаповнення")
+
   const form = new LoginForm("Log In");
 
   const confirmCallback = async (close) => {
@@ -75,6 +85,7 @@ new Modal(form.getFormElement(), confirmCallback).render();
     //   modal.style.display = "none";
     // }
 
+
     // створити змінну яка приймає в себе modalSelect.value та передає 
     // потім як інпут в наступний дочірній клас лікая 
     // а також якщо вона буде мати щначення, то модалка з вибором лікаря закривається 
@@ -113,4 +124,3 @@ new Modal(form.getFormElement(), confirmCallback).render();
         }
   });
 
-});
