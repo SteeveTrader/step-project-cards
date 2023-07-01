@@ -41,19 +41,23 @@ export default class Modal {
 
 
     addListeners() {
-      this.modalCloseBtn.addEventListener('click', () => {
+      this.modalCloseBtn.addEventListener('click', (event) => {
+        event.preventDefault();
           this.close();
       });
 
-      this.modalBackground.addEventListener('click', () => {
+      this.modalBackground.addEventListener('click', (event) => {
+        event.preventDefault();
           this.close();
       });
 
-      this.modalBtnCancel.addEventListener('click', () => {
+      this.modalBtnCancel.addEventListener('click', (event) => {
+        event.preventDefault();
         this.close();
     });
 
-      this.modalBtnOk.addEventListener('click', () => {
+      this.modalBtnOk.addEventListener('click', (event) => {
+        event.preventDefault();
           this.confirmFunction(() => {
               this.close();
           });
@@ -71,3 +75,4 @@ export default class Modal {
       document.body.append(this.modalWindow);
     }
 }
+

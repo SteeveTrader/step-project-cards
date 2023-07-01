@@ -16,7 +16,7 @@ import checkToken from './functions/checkToken.js';
 import cardFilter from "./functions/filter.js";
 import deleteCard from './functions/removeCard.js';
 import editCard from './functions/cardEditor.js';
-import serverRequest from './API/serverRequest.js';
+
 
 cardFilter();
 checkToken();
@@ -26,7 +26,8 @@ editCard();
 const loginBtn = document.querySelector('.js-login-btn');
 const addElemBtn = document.querySelector('.js-create-elem-btn');
 
-loginBtn.addEventListener("click", () => {
+loginBtn.addEventListener("click", (event) => {
+ event.preventDefault()
 
   // editCard function + new funct takeValues (атрибут для input "автозаповнення")
 
@@ -35,28 +36,25 @@ loginBtn.addEventListener("click", () => {
   const confirmCallback = async (close) => {
     const body = form.getValues();
 
-    const {
-      data
-    } = await loginFunction(body);
+    const { data } = await loginFunction(body);
     localStorage.setItem("token", data);
 
-    const { data: resp} =  await fetchData();
+    const { data: resp } = await fetchData();
     // cardsData = resp;
-    resp.forEach( el => {
-      const {description, doctor, fullname, id, purpose, urgency} = el;
+    resp.forEach(el => {
+      const { description, doctor, fullname, id, purpose, urgency } = el;
       new CardHtml(purpose, description, urgency, fullname, doctor).render();
     });
     close();
     checkToken();
   };
   new Modal(form.getFormElement(), confirmCallback).render();
-
 });
 
 
 
-addElemBtn.addEventListener("click", () => {
-  
+addElemBtn.addEventListener("click", (event) => {
+  event.preventDefault()
   const form = new SelectDoctor("Create Visit");
 
 
@@ -73,11 +71,12 @@ addElemBtn.addEventListener("click", () => {
     close();
     checkToken();
   };
-  
-new Modal(form.getFormElement(), confirmCallback).render();
+
+  new Modal(form.getFormElement(), confirmCallback).render();
   const modalSelect = document.querySelector('.modal__select');
 
-  modalSelect.addEventListener("change", () => {
+  modalSelect.addEventListener("change", (event) => {
+    event.preventDefault()
     const selectedDoctor = modalSelect.value;
     // if (selectedDoctor.value) {
     //   const modal = document.querySelector(".modal__main-container");
@@ -91,36 +90,36 @@ new Modal(form.getFormElement(), confirmCallback).render();
     // а також якщо вона буде мати щначення, то модалка з вибором лікаря закривається 
 
     if (selectedDoctor === 'cardiologist') {
-          
-          const form = new VisitCardiologist("Cardiologist");
 
-          const confirmCallback = async (close) => {
+      const form = new VisitCardiologist("Cardiologist");
 
-            const body = form.getValues();
-            console.log(body);
-        
-            const {
-              data
-            } = await createCardAPI(body);
+      const confirmCallback = async (close) => {
 
-            close();
-            checkToken();
-          };
+        const body = form.getValues();
+        console.log(body);
 
-          new Modal(form.getFormElement(), confirmCallback).render();
-          
-          // newForm.createElement();
-          console.log(selectedDoctor);
-        } else if (selectedDoctor === 'dentist') {
-          const form = new VisitDentist("Dentist");
-          // console.log(form);
-          console.log(selectedDoctor);
-          new Modal(form.getFormElement(), confirmCallback).render();
-        } else if (selectedDoctor === 'therapist') {
-          const form = new VisitTherapist("Therapist");
-          // console.log(form);
-          console.log(selectedDoctor);
-          new Modal(form.getFormElement(), confirmCallback).render();
-        }
+        const { data } = await createCardAPI(body);
+
+        close();
+        checkToken();
+      };
+
+      new Modal(form.getFormElement(), confirmCallback).render();
+
+      // newForm.createElement();
+      console.log(selectedDoctor);
+    } else if (selectedDoctor === 'dentist') {
+
+      const form = new VisitDentist("Dentist");
+      // console.log(form);
+      console.log(selectedDoctor);
+      new Modal(form.getFormElement(), confirmCallback).render();
+    } else if (selectedDoctor === 'therapist') {
+      const form = new VisitTherapist("Therapist");
+      // console.log(form);
+      console.log(selectedDoctor);
+      new Modal(form.getFormElement(), confirmCallback).render();
+    }
   });
 
+});

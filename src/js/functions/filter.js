@@ -141,7 +141,8 @@ export default function cardFilter() {
   const searchBtn = document.querySelector('.filterBtn');
   searchBtn.addEventListener('click', filterArray);
 
-  function filterArray() {
+  function filterArray(event) {
+    event.preventDefault();
     const doctor = document.getElementById('doctorFilter').value;
     const fullName = document.getElementById('fullNameFilter').value.trim().toLowerCase();
     const urgency = document.getElementById('urgencyFilter').value;

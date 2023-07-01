@@ -54,7 +54,8 @@ export default class CardHtml {
     }
 
     eventlistner() {
-        this.showMorebtn.addEventListener('click', () => {
+        this.showMorebtn.addEventListener('click', (event) => {
+            event.preventDefault();
             this.showMorebtn.style.display = 'none';
             this.card.insertAdjacentHTML("beforeend", `
             <div class="reserwation__card-additional-info">
@@ -78,6 +79,3 @@ export default class CardHtml {
 }
 
 
-// const example = new CardHtml('purpose', 'description', 'urgency', 'fullname', 'John', '1');
-// example.createElement();
-// example.render();
