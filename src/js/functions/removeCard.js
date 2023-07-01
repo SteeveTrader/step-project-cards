@@ -11,7 +11,7 @@ export default function deleteCard(filteredArray) {
       cardContainer.remove();
       const deleteObject = filteredArray.find(item => item.id === cardContainer);
       filteredArray.splice(deleteObject, 1);
-      console.log(filteredArray);
+      // console.log(filteredArray);
       return filteredArray
     });
   });

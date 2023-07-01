@@ -1,4 +1,4 @@
-import { urlCards } from "./variables.js";
+import urlCards from "./variables.js";
 
 const checkBtn = document.querySelector('.checkArray');
 const container = document.querySelector('.container');
