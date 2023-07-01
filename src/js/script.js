@@ -1,60 +1,116 @@
 import Modal from './classes/Modal.js';
-import VisitForm from './classes/makeVisitForm.js';
-// import VisitCardiologist from './classes/VisitCardiologist.js';
-// import VisitDantist from './classes/VisitDantist.js';
-// import VisitTherapist from './classes/VisitTherapist.js';
+import SelectDoctor from './classes/selectDoctor.js';
+import VisitCardiologist from './classes/VisitCardiologist.js';
+import VisitDentist from './classes/VisitDantist.js';
+import VisitTherapist from './classes/VisitTherapist.js';
 import CardHtml from './classes/cardHtml.js';
 import loginFunction from './API/logInFunction.js';
 import createCardAPI from './API/createCard.js';
 import LoginForm from './classes/loginForm.js';
+import { fetchData } from './API/serverRequest.js';
+import cardsData from './cardsData.js';
 
 import checkToken from './functions/checkToken.js';
 import cardFilter from "./functions/filter.js";
 
-cardFilter()
+cardFilter();
 checkToken();
 
-const cardContainer = document.querySelector(".reserwation__card-container");
 const loginBtn = document.querySelector('.js-login-btn');
 const addElemBtn = document.querySelector('.js-create-elem-btn');
 
 loginBtn.addEventListener("click", () => {
-    const form = new LoginForm("Log In");
-
-    const confirmCallback = async (close) => {
-        const body = form.getValues();
-
-        const { data } = await loginFunction(body);
-        localStorage.setItem("token", data);
-        close();
-        checkToken();
-    };
-    new Modal(form.getFormElement(), confirmCallback).render();
-
-});
-
-let cardsArr = {};
-
-addElemBtn.addEventListener("click", () => {
-  const form = new VisitForm("Create Visit");
+  const form = new LoginForm("Log In");
 
   const confirmCallback = async (close) => {
     const body = form.getValues();
 
-    const { data } = await createCardAPI(body);
-    cardsArr = body;
+    const {
+      data
+    } = await loginFunction(body);
+    localStorage.setItem("token", data);
 
-    // cardsArr.forEach( elem => {
-    //   console.log(elem);
-    //   let {description, fullname, purpose, urgency, priority} = elem;
-    //   console.log(description, fullname, purpose, urgency, priority);
-    // });    
+    const { data: resp} =  await fetchData();
+    // cardsData = resp;
+    resp.forEach( el => {
+      const {description, doctor, fullname, id, purpose, urgency} = el;
+      new CardHtml(purpose, description, urgency, fullname, doctor).render();
+    });
     close();
     checkToken();
   };
-
   new Modal(form.getFormElement(), confirmCallback).render();
- 
 
 });
 
+
+
+addElemBtn.addEventListener("click", () => {
+  
+  const form = new SelectDoctor("Create Visit");
+
+
+  const confirmCallback = (close) => {
+
+    // if (form.select.)
+
+    // const body = form.getValues();
+    // console.log(body);
+
+    // const {
+    //   data
+    // } = await createCardAPI(body);
+    close();
+    checkToken();
+  };
+  
+new Modal(form.getFormElement(), confirmCallback).render();
+  const modalSelect = document.querySelector('.modal__select');
+
+  modalSelect.addEventListener("change", () => {
+    const selectedDoctor = modalSelect.value;
+    // if (selectedDoctor.value) {
+    //   const modal = document.querySelector(".modal__main-container");
+    //   console.log(modal);
+    //   modal.style.display = "none";
+    // }
+
+    // створити змінну яка приймає в себе modalSelect.value та передає 
+    // потім як інпут в наступний дочірній клас лікая 
+    // а також якщо вона буде мати щначення, то модалка з вибором лікаря закривається 
+
+    if (selectedDoctor === 'cardiologist') {
+          
+          const form = new VisitCardiologist("Cardiologist");
+
+          const confirmCallback = async (close) => {
+
+            const body = form.getValues();
+            console.log(body);
+        
+            const {
+              data
+            } = await createCardAPI(body);
+
+            close();
+            checkToken();
+          };
+
+          new Modal(form.getFormElement(), confirmCallback).render();
+          
+          // newForm.createElement();
+          console.log(selectedDoctor);
+        } else if (selectedDoctor === 'dentist') {
+          const form = new VisitDentist("Dentist");
+          // console.log(form);
+          console.log(selectedDoctor);
+          new Modal(form.getFormElement(), confirmCallback).render();
+        } else if (selectedDoctor === 'therapist') {
+          const form = new VisitTherapist("Therapist");
+          // console.log(form);
+          console.log(selectedDoctor);
+          new Modal(form.getFormElement(), confirmCallback).render();
+        }
+  });
+
+});

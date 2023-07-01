@@ -3,12 +3,13 @@ export default class Form {
         this.title = title;
         this.form = document.createElement('form');
         this.formTitle = document.createElement('h3');
+        this.select = document.createElement('select');
     }
 
     createElement() {
         this.form.className = 'input-visit-form';
         this.formTitle.innerText = this.title;
-        this.form.append(this.formTitle);
+        this.form.prepend(this.formTitle);
     }
 
     getValues() {
