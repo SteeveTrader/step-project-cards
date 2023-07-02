@@ -40,6 +40,7 @@ export default class Modal {
     }
 
 
+  
     addListeners() {
       this.modalCloseBtn.addEventListener('click', (event) => {
         event.preventDefault();
@@ -54,13 +55,13 @@ export default class Modal {
       this.modalBtnCancel.addEventListener('click', (event) => {
         event.preventDefault();
         this.close();
-    });
+      });
 
       this.modalBtnOk.addEventListener('click', (event) => {
         event.preventDefault();
           this.confirmFunction(() => {
               this.close();
-          });
+          });    
       });
   }
 

@@ -8,7 +8,7 @@ import array from "../API/testArray.js";
 
 export default function editCard(array) {
   let editButtons = document.querySelectorAll('.reserwation__edit-btn');
-  console.log(editButtons);
+  // console.log(editButtons);
   editButtons.forEach(function (button) {
     button.addEventListener('click', function (event) {
       event.preventDefault();
@@ -16,17 +16,19 @@ export default function editCard(array) {
       let cardId = cardContainer.id;
       // console.log(cardContainer);
       let editObject = array.find(item => item.id === parseInt(cardId));
-      // editObject = new VisitForm(
-      //   editObject.purpose,
-      //   editObject.description,
-      //   editObject.urgency,
-      //   editObject.fullName,
-      //   editObject.doctor,
-      //   editObject.id
-      // );
-      console.log(editObject);  
-      // editObject.createElement();
-      // editObject.renderVisit();
+
+      editObject = new VisitForm(
+        editObject.purpose,
+        editObject.description,
+        editObject.urgency,
+        editObject.fullName,
+        editObject.doctor,
+        editObject.id
+      );
+      // console.log(editObject);  
+      editObject.createElement();
+      editObject.renderVisit();
+
     });
   });
 }
