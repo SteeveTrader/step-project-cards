@@ -23,15 +23,11 @@ editCard();
 const loginBtn = document.querySelector('.js-login-btn');
 const addElemBtn = document.querySelector('.js-create-elem-btn');
 
-
-loginBtn.addEventListener("click", (event) => {
- event.preventDefault()
-
-
 let cloneArray = [];
 console.log(cloneArray);
 
-loginBtn.addEventListener("click", () => {
+loginBtn.addEventListener("click", (event) => {
+  event.preventDefault();
   const form = new LoginForm("Log In");
 
   const confirmCallback = async (close) => {
@@ -68,7 +64,7 @@ loginBtn.addEventListener("click", () => {
 
 
 addElemBtn.addEventListener("click", (event) => {
-  event.preventDefault()
+  event.preventDefault();
 
   const form = new SelectDoctor("Create Visit");
 
@@ -83,7 +79,7 @@ addElemBtn.addEventListener("click", (event) => {
   const modalSelect = document.querySelector('.modal__select');
 
   modalSelect.addEventListener("change", (event) => {
-    event.preventDefault()
+    event.preventDefault();
     const selectedDoctor = modalSelect.value;
     if (selectedDoctor === 'cardiologist' || 
         selectedDoctor === 'dentist' || 
@@ -97,7 +93,7 @@ addElemBtn.addEventListener("click", (event) => {
 
           const confirmCallback = async (close) => {
             const body = form.getValues();
-            
+          
             CardsData.push(body);
 
             console.log(CardsData);
@@ -115,6 +111,8 @@ addElemBtn.addEventListener("click", (event) => {
           
           const confirmCallback = async (close) => {
             const body = form.getValues();
+            
+            CardsData.push(body);
     
             const {
               data
@@ -131,6 +129,8 @@ addElemBtn.addEventListener("click", (event) => {
           const confirmCallback = async (close) => {
             const body = form.getValues();
     
+            CardsData.push(body);
+            
             const {
               data
             } = await createCardAPI(body);
