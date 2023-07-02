@@ -3,17 +3,14 @@ import SelectDoctor from './classes/selectDoctor.js';
 import VisitCardiologist from './classes/VisitCardiologist.js';
 import VisitDentist from './classes/VisitDantist.js';
 import VisitTherapist from './classes/VisitTherapist.js';
-import CardHtml from './classes/cardHtml.js';
+import CardHtml from './classes/CardHtml.js';
 import loginFunction from './API/logInFunction.js';
 import createCardAPI from './API/createCard.js';
-import LoginForm from './classes/loginForm.js';
-import removeCard from './functions/removeCard.js';
+import LoginForm from './classes/LoginForm.js';
 import { fetchData } from './API/serverRequest.js';
-import cardsData from './cardsData.js';
-
-
-import checkToken from './functions/checkToken.js';
 import cardFilter from "./functions/filter.js";
+import checkToken from './functions/checkToken.js';
+import loginButtonClick from './functions/cardsData.js';
 import deleteCard from './functions/removeCard.js';
 import editCard from './functions/cardEditor.js';
 
@@ -23,35 +20,47 @@ checkToken();
 deleteCard();
 editCard();
 
+
 const loginBtn = document.querySelector('.js-login-btn');
 const addElemBtn = document.querySelector('.js-create-elem-btn');
+loginBtn.addEventListener("click", loginButtonClick);
 
-loginBtn.addEventListener("click", () => {
-  // editCard function + new funct takeValues (атрибут для input "автозаповнення")
+//loginBtn.addEventListener("click", () => {
 
-  const form = new LoginForm("Log In");
+  //const confirmCallback = async (close) => {
+    //const body = form.getValues();
 
-  const confirmCallback = async (close) => {
-    const body = form.getValues();
+   // const {
+     // data
+   // } = await loginFunction(body);
+   // localStorage.setItem("token", data);
 
-    const {
-      data
-    } = await loginFunction(body);
-    localStorage.setItem("token", data);
-
-    const { data: resp} =  await fetchData();
-    resp.forEach( el => {
-      const {description, doctor, fullname, id, purpose, urgency} = el;
-      new CardHtml(purpose, description, urgency, fullname, doctor).render();
-    });
-    close();
-    checkToken();
-  };
-  new Modal(form.getFormElement(), confirmCallback).render();
-
-});
+   // const { data: resp} =  await fetchData();
+   // resp.forEach( el => {
+     // const {description, doctor, fullname, id, purpose, urgency} = el;
+      //new CardHtml(purpose, description, urgency, fullname, doctor).render();
+   // });
+   // close();
+   // checkToken();
+  //};
+  //new Modal(form.getFormElement(), confirmCallback).render();
 
 
+//     const { data: resp } = await fetchData();
+//     const cloneArray =[...resp];
+//     console.log(cloneArray);
+
+//     cloneArray.forEach(el => {
+//       const { description, doctor, fullname, id, purpose, urgency } = el;
+//       let card = new CardHtml(purpose, description, urgency, fullname, doctor);
+//       card.render();
+//     });
+//     close();
+//     checkToken();
+//   };
+
+//   new Modal(form.getFormElement(), confirmCallback).render();
+// });
 
 addElemBtn.addEventListener("click", () => {
   const form = new SelectDoctor("Create Visit");
