@@ -41,12 +41,15 @@ loginBtn.addEventListener("click", (event) => {
 
     const { data: resp } = await fetchData();
     // cardsData = resp;
-    resp.forEach(el => {
+    let cloneArray = [...resp]
+    cloneArray.forEach(el => {
       const { description, doctor, fullname, id, purpose, urgency } = el;
-      new CardHtml(purpose, description, urgency, fullname, doctor).render();
+      let card = new CardHtml(purpose, description, urgency, fullname, doctor);
+      card.render();
     });
     close();
     checkToken();
+    console.log(cloneArray);
   };
   new Modal(form.getFormElement(), confirmCallback).render();
 });

@@ -72,7 +72,7 @@ export default class CardHtml {
 
 
     render() {
-        // this.createElement();
+        this.createElement();
         this.eventlistner();
         this.container.append(this.cardContainer);
     }
