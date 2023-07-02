@@ -166,7 +166,7 @@ export default function cardFilter() {
 
     displayResults(filteredArray);
     deleteCard(filteredArray);
-   cardEditor(array);
+    cardEditor(array);
   }
 
   function displayResults(filteredArray) {
@@ -181,6 +181,6 @@ export default function cardFilter() {
   }
 
 }
- 
+
 
 
