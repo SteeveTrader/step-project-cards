@@ -16,11 +16,11 @@ import checkToken from './functions/checkToken.js';
 import cardFilter from "./functions/filter.js";
 import deleteCard from './functions/removeCard.js';
 import editCard from './functions/cardEditor.js';
-import serverRequest from './API/serverRequest.js';
+
 
 cardFilter();
 checkToken();
-deleteCard()
+deleteCard();
 editCard();
 
 const loginBtn = document.querySelector('.js-login-btn');
@@ -124,3 +124,4 @@ new Modal(form.getFormElement(), confirmCallback).render();
         }
   });
 
+});
