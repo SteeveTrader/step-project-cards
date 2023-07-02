@@ -1,4 +1,4 @@
-import CardHtml from "../classes/cardHtml.js";
+// import CardHtml from "../classes/cardHtml.js";
 import deleteCard from '../functions/removeCard.js';
 import cardEditor from '../functions/cardEditor.js';
 import array from "../API/testArray.js";
