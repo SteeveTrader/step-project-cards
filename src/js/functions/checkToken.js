@@ -8,6 +8,7 @@ const checkToken = () => {
         loginBtn.style.display = 'none';
         createElemBtn.style.display = 'inline';
 
+        // if localstorage token === true  => CardsData.forEach(el.......
         // Отримати з сервера і відмалювати всю інфу
     }
 }
