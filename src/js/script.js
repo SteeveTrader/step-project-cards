@@ -16,18 +16,17 @@ import checkToken from './functions/checkToken.js';
 import cardFilter from "./functions/filter.js";
 import deleteCard from './functions/removeCard.js';
 import editCard from './functions/cardEditor.js';
-import serverRequest from './API/serverRequest.js';
+
 
 cardFilter();
 checkToken();
-deleteCard()
+deleteCard();
 editCard();
 
 const loginBtn = document.querySelector('.js-login-btn');
 const addElemBtn = document.querySelector('.js-create-elem-btn');
 
 loginBtn.addEventListener("click", () => {
-
   // editCard function + new funct takeValues (атрибут для input "автозаповнення")
 
   const form = new LoginForm("Log In");
@@ -41,7 +40,6 @@ loginBtn.addEventListener("click", () => {
     localStorage.setItem("token", data);
 
     const { data: resp} =  await fetchData();
-    // cardsData = resp;
     resp.forEach( el => {
       const {description, doctor, fullname, id, purpose, urgency} = el;
       new CardHtml(purpose, description, urgency, fullname, doctor).render();
@@ -56,49 +54,31 @@ loginBtn.addEventListener("click", () => {
 
 
 addElemBtn.addEventListener("click", () => {
-  
   const form = new SelectDoctor("Create Visit");
 
-
   const confirmCallback = (close) => {
-
-    // if (form.select.)
-
-    // const body = form.getValues();
-    // console.log(body);
-
-    // const {
-    //   data
-    // } = await createCardAPI(body);
     close();
     checkToken();
   };
   
-new Modal(form.getFormElement(), confirmCallback).render();
+  const doctorModal = new Modal(form.getFormElement(), confirmCallback);
+        doctorModal.render();
   const modalSelect = document.querySelector('.modal__select');
 
   modalSelect.addEventListener("change", () => {
     const selectedDoctor = modalSelect.value;
-    // if (selectedDoctor.value) {
-    //   const modal = document.querySelector(".modal__main-container");
-    //   console.log(modal);
-    //   modal.style.display = "none";
-    // }
-
-
-    // створити змінну яка приймає в себе modalSelect.value та передає 
-    // потім як інпут в наступний дочірній клас лікая 
-    // а також якщо вона буде мати щначення, то модалка з вибором лікаря закривається 
+    if (selectedDoctor === 'cardiologist' || 
+        selectedDoctor === 'dentist' || 
+        selectedDoctor === 'therapist') {
+          doctorModal.close();
+    }
 
     if (selectedDoctor === 'cardiologist') {
-          
           const form = new VisitCardiologist("Cardiologist");
 
           const confirmCallback = async (close) => {
-
             const body = form.getValues();
-            console.log(body);
-        
+    
             const {
               data
             } = await createCardAPI(body);
@@ -108,19 +88,37 @@ new Modal(form.getFormElement(), confirmCallback).render();
           };
 
           new Modal(form.getFormElement(), confirmCallback).render();
-          
-          // newForm.createElement();
-          console.log(selectedDoctor);
         } else if (selectedDoctor === 'dentist') {
           const form = new VisitDentist("Dentist");
-          // console.log(form);
-          console.log(selectedDoctor);
+          
+          const confirmCallback = async (close) => {
+            const body = form.getValues();
+    
+            const {
+              data
+            } = await createCardAPI(body);
+
+            close();
+            checkToken();
+          };
+
           new Modal(form.getFormElement(), confirmCallback).render();
         } else if (selectedDoctor === 'therapist') {
           const form = new VisitTherapist("Therapist");
-          // console.log(form);
-          console.log(selectedDoctor);
+
+          const confirmCallback = async (close) => {
+            const body = form.getValues();
+    
+            const {
+              data
+            } = await createCardAPI(body);
+
+            close();
+            checkToken();
+          };
+
           new Modal(form.getFormElement(), confirmCallback).render();
         }
   });
 
+});
