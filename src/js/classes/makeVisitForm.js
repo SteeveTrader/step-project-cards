@@ -21,7 +21,7 @@ export default class VisitForm extends Form {
                     <option value="urgent">Urgent</option>
                 </select>
                 
-                <input type="text" required name="fullname" placeholder="Full Name">
+                <input type="text" required name="fullName" placeholder="Full Name"> 
             `;
     }
 

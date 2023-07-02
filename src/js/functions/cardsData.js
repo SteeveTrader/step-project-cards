@@ -1,9 +1,10 @@
 const CardsData = [
     {
         "purpose": "хвороба",
+        "doctor": "cardiologist",
         "description": "хвороба тиск",
         "urgency": "normal",
-        "fullname": "макс",
+        "fullName": "макс",
         "age": "20",
         "blood-press": "120/80",
         "body-index": "5",
@@ -13,9 +14,10 @@ const CardsData = [
 
     {
         "purpose": "хвороба",
+        "doctor": "cardiologist",
         "description": "хвороба тиск",
         "urgency": "normal",
-        "fullname": "макс",
+        "fullName": "макс",
         "age": "20",
         "blood-press": "120/80",
         "body-index": "5",
@@ -25,9 +27,10 @@ const CardsData = [
 
     {
         "purpose": "хвороба",
+        "doctor": "cardiologist",
         "description": "хвороба тиск",
         "urgency": "normal",
-        "fullname": "макс",
+        "fullName": "макс",
         "age": "20",
         "blood-press": "120/80",
         "body-index": "5",
@@ -37,9 +40,10 @@ const CardsData = [
 
     {
         "purpose": "хвороба",
+        "doctor": "cardiologist",
         "description": "хвороба тиск",
         "urgency": "normal",
-        "fullname": "макс",
+        "fullName": "макс",
         "age": "20",
         "blood-press": "120/80",
         "body-index": "5",

@@ -16,7 +16,7 @@ import editCard from './functions/cardEditor.js';
 
 cardFilter();
 checkToken();
-deleteCard();
+/*Тимошенко переніс функцію делєйт у кінець*/
 editCard();
 
 
@@ -47,11 +47,12 @@ loginBtn.addEventListener("click", (event) => {
    console.log(CardsData);
 
 
-  // CardsData.forEach(el => {
-  //   console.log(el);
-  //   const { description, doctor, fullname, id, purpose, urgency } = el;
-  //   new CardHtml(purpose, description, urgency, fullname, doctor).render();
-  //   });
+  CardsData.forEach(el => {
+    console.log(el);
+    const { description, doctor, fullName, id, purpose, urgency } = el;
+    console.log(fullName);
+    new CardHtml(purpose, description, urgency, fullName, doctor, id).render(); /*Тимошенко додав id*/
+    });
 
   };
 
@@ -145,3 +146,5 @@ addElemBtn.addEventListener("click", (event) => {
   });
 
 });
+
+deleteCard(CardsData);
