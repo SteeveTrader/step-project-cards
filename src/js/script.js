@@ -24,6 +24,10 @@ const loginBtn = document.querySelector('.js-login-btn');
 const addElemBtn = document.querySelector('.js-create-elem-btn');
 
 
+loginBtn.addEventListener("click", (event) => {
+ event.preventDefault()
+
+
 let cloneArray = [];
 console.log(cloneArray);
 
@@ -32,7 +36,7 @@ loginBtn.addEventListener("click", () => {
 
   const confirmCallback = async (close) => {
     const body = form.getValues();
-
+ 
    const {
      data
    } = await loginFunction(body);
@@ -52,29 +56,34 @@ loginBtn.addEventListener("click", () => {
   //   const { description, doctor, fullname, id, purpose, urgency } = el;
   //   new CardHtml(purpose, description, urgency, fullname, doctor).render();
   //   });
+
   };
 
   new Modal(form.getFormElement(), confirmCallback).render();
-
 });
 
 
 // if localstorage token === true  => CardsData.forEach(el....... (йди до файлу chekToken.js) cardsData записати в окрему функцію.
 
 
-addElemBtn.addEventListener("click", () => {
+
+addElemBtn.addEventListener("click", (event) => {
+  event.preventDefault()
+
   const form = new SelectDoctor("Create Visit");
 
   const confirmCallback = (close) => {
     close();
     checkToken();
   };
-  
+
   const doctorModal = new Modal(form.getFormElement(), confirmCallback);
         doctorModal.render();
+
   const modalSelect = document.querySelector('.modal__select');
 
-  modalSelect.addEventListener("change", () => {
+  modalSelect.addEventListener("change", (event) => {
+    event.preventDefault()
     const selectedDoctor = modalSelect.value;
     if (selectedDoctor === 'cardiologist' || 
         selectedDoctor === 'dentist' || 
@@ -83,6 +92,7 @@ addElemBtn.addEventListener("click", () => {
     }
 
     if (selectedDoctor === 'cardiologist') {
+
           const form = new VisitCardiologist("Cardiologist");
 
           const confirmCallback = async (close) => {
@@ -131,6 +141,7 @@ addElemBtn.addEventListener("click", () => {
 
           new Modal(form.getFormElement(), confirmCallback).render();
         }
+
   });
 
 });

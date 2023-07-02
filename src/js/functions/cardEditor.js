@@ -1,15 +1,22 @@
-import VisitForm from "../classes/makeVisitForm.js"
+import modal from "../classes/makeVisitForm.js"
 import array from "../API/testArray.js";
+// import VisitCardiologist from './classes/VisitCardiologist.js';
+// import VisitDentist from './classes/VisitDantist.js';
+// import VisitTherapist from './classes/VisitTherapist.js';
+
+
 
 export default function editCard(array) {
   let editButtons = document.querySelectorAll('.reserwation__edit-btn');
   // console.log(editButtons);
   editButtons.forEach(function (button) {
-    button.addEventListener('click', function () {
+    button.addEventListener('click', function (event) {
+      event.preventDefault();
       let cardContainer = this.closest('.reserwation__card-container');
       let cardId = cardContainer.id;
       // console.log(cardContainer);
       let editObject = array.find(item => item.id === parseInt(cardId));
+
       editObject = new VisitForm(
         editObject.purpose,
         editObject.description,
@@ -21,6 +28,7 @@ export default function editCard(array) {
       // console.log(editObject);  
       editObject.createElement();
       editObject.renderVisit();
+
     });
   });
 }

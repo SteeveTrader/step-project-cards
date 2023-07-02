@@ -12,16 +12,30 @@ export default class Form {
         this.form.prepend(this.formTitle);
     }
 
-    getValues() {
+       getValues() {
         const inputs = this.form.querySelectorAll('input, select');
         const body = {};
+        let hasEmptyField = false;
 
         inputs.forEach(input => {
-            body[input.name] = input.value;
+            if (input.value.trim() === "") {
+                hasEmptyField = true;
+                return;
+            } else {
+                body[input.name] = input.value;
+            }
         });
+
+        if (hasEmptyField) {
+            alert("Please fill all input fields");
+            return false;
+        }
 
         return body;
     }
+
+
+
 
     render() {
         this.createElement();
