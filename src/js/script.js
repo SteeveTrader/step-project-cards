@@ -16,16 +16,14 @@ import CardsData from './functions/cardsData.js';
 import deleteCard from './functions/removeCard.js';
 import editCard from './functions/cardEditor.js';
 
-cardFilter();
 
-/*Тимошенко переніс функцію делєйт у кінець*/
-editCard();
 let cloneArray = [];
 if (localStorage.getItem('token')) {
-  const { data: resp } = await fetchData();
-  cloneArray = [...resp];
+  
+  // const { data: resp } = await fetchData();
+  // cloneArray = [...resp];
 
-  CardsData.splice(0, CardsData.length, ...cloneArray);
+  // CardsData.splice(0, CardsData.length, ...cloneArray);
   CardsData.forEach(el => {
     const { description, doctor, fullname, id, purpose, urgency } = el;
     new CardHtml(purpose, description, urgency, fullname, doctor, id).render();
@@ -67,14 +65,8 @@ if (localStorage.getItem('token')) {
 
 cardFilter();
 checkToken();
-/*Тимошенко переніс функцію делєйт у кінець*/
 editCard();
 
-
-
-export default CardsData;
-
-// if localstorage token === true  => CardsData.forEach(el....... (йди до файлу chekToken.js) cardsData записати в окрему функцію.
 
 
 const addElemBtn = document.querySelector('.js-create-elem-btn');
