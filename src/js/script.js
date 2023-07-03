@@ -7,7 +7,9 @@ import CardHtml from './classes/CardHtml.js';
 import loginFunction from './API/logInFunction.js';
 import createCardAPI from './API/createCard.js';
 import LoginForm from './classes/LoginForm.js';
-import { fetchData } from './API/serverRequest.js';
+import {
+  fetchData
+} from './API/serverRequest.js';
 import cardFilter from "./functions/filter.js";
 import checkToken from './functions/checkToken.js';
 import CardsData from './functions/cardsData.js';
@@ -15,7 +17,7 @@ import deleteCard from './functions/removeCard.js';
 import editCard from './functions/cardEditor.js';
 
 cardFilter();
-checkToken();
+
 /*Тимошенко переніс функцію делєйт у кінець*/
 editCard();
 
@@ -32,30 +34,55 @@ loginBtn.addEventListener("click", (event) => {
 
   const confirmCallback = async (close) => {
     const body = form.getValues();
- 
-   const {
-     data
-   } = await loginFunction(body);
-   localStorage.setItem("token", data);
 
-   const { data: resp} =  await fetchData();
-   cloneArray = [...resp];
-   close();
-   checkToken();
+    const {
+      data
+    } = await loginFunction(body);
+    localStorage.setItem("token", data);
 
-   CardsData.splice(0, CardsData.length, ...cloneArray);
+    const {
+      data: resp
+    } = await fetchData();
+    cloneArray = [...resp];
+    CardsData.splice(0, CardsData.length, ...cloneArray);
 
-  CardsData.forEach(el => {
-    console.log(el);
-    const { description, doctor, fullname, id, purpose, urgency } = el;
-    new CardHtml(purpose, description, urgency, fullname, doctor, id).render();
-    });
-
+    // CardsData.forEach(el => {
+    //   console.log(el);
+    //   const {
+    //     description,
+    //     doctor,
+    //     fullName,
+    //     id,
+    //     purpose,
+    //     urgency
+    //   } = el;
+    //   new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
+    // });
+    close();
+    checkToken();
   };
 
   new Modal(form.getFormElement(), confirmCallback).render();
 });
-console.log(CardsData);
+
+// window.addEventListener("beforeunload", () => {
+//   console.log(CardsData);
+//   checkToken();
+
+//   CardsData.forEach(el => {
+//     const {
+//       description,
+//       doctor,
+//       fullName,
+//       id,
+//       purpose,
+//       urgency
+//     } = el;
+//     new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
+//     console.log(CardsData);
+//   });
+// });
+
 
 // if localstorage token === true  => CardsData.forEach(el....... (йди до файлу chekToken.js) cardsData записати в окрему функцію.
 
@@ -72,76 +99,79 @@ addElemBtn.addEventListener("click", (event) => {
   };
 
   const doctorModal = new Modal(form.getFormElement(), confirmCallback);
-        doctorModal.render();
+  doctorModal.render();
 
   const modalSelect = document.querySelector('.modal__select');
 
   modalSelect.addEventListener("change", (event) => {
     event.preventDefault();
     const selectedDoctor = modalSelect.value;
-    if (selectedDoctor === 'cardiologist' || 
-        selectedDoctor === 'dentist' || 
-        selectedDoctor === 'therapist') {
-          doctorModal.close();
+    if (selectedDoctor === 'cardiologist' ||
+      selectedDoctor === 'dentist' ||
+      selectedDoctor === 'therapist') {
+      doctorModal.close();
     }
 
     if (selectedDoctor === 'cardiologist') {
 
-          const form = new VisitCardiologist("Cardiologist");
+      const form = new VisitCardiologist("Cardiologist");
 
-          const confirmCallback = async (close) => {
-            const body = form.getValues();
-          
-            CardsData.push(body);
+      const confirmCallback = async (close) => {
+        const body = form.getValues();
 
-            console.log(CardsData);
-            const {
-              data
-            } = await createCardAPI(body);
+        CardsData.push(body);
 
-            close();
-            checkToken();
-          };
+        console.log(CardsData);
+        const {
+          data
+        } = await createCardAPI(body);
 
-          new Modal(form.getFormElement(), confirmCallback).render();
-        } else if (selectedDoctor === 'dentist') {
-          const form = new VisitDentist("Dentist");
-          
-          const confirmCallback = async (close) => {
-            const body = form.getValues();
-            
-            CardsData.push(body);
-    
-            const {
-              data
-            } = await createCardAPI(body);
+        close();
+        checkToken();
+      };
 
-            close();
-            checkToken();
-          };
+      new Modal(form.getFormElement(), confirmCallback).render();
+    } else if (selectedDoctor === 'dentist') {
+      const form = new VisitDentist("Dentist");
 
-          new Modal(form.getFormElement(), confirmCallback).render();
-        } else if (selectedDoctor === 'therapist') {
-          const form = new VisitTherapist("Therapist");
+      const confirmCallback = async (close) => {
+        const body = form.getValues();
 
-          const confirmCallback = async (close) => {
-            const body = form.getValues();
-    
-            CardsData.push(body);
+        CardsData.push(body);
 
-            const {
-              data
-            } = await createCardAPI(body);
+        const {
+          data
+        } = await createCardAPI(body);
 
-            close();
-            checkToken();
-          };
+        close();
+        console.log(CardsData);
+        checkToken();
+      };
 
-          new Modal(form.getFormElement(), confirmCallback).render();
-        }
+      new Modal(form.getFormElement(), confirmCallback).render();
+    } else if (selectedDoctor === 'therapist') {
+      const form = new VisitTherapist("Therapist");
+
+      const confirmCallback = async (close) => {
+        const body = form.getValues();
+
+        CardsData.push(body);
+
+        const {
+          data
+        } = await createCardAPI(body);
+
+        close();
+        console.log(CardsData);
+        checkToken();
+      };
+
+      new Modal(form.getFormElement(), confirmCallback).render();
+    }
 
   });
 
 });
 
+checkToken();
 deleteCard(CardsData);

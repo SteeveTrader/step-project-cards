@@ -21,12 +21,12 @@ a {
     
     margin-top: 50px;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     box-sizing: border-box;
     padding: 100px 24px 24px 24px;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 45px;
     /* flex-direction: column; */
 }
 

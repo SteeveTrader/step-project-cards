@@ -9,7 +9,7 @@ observer.observe(container, config);
 
 export default function editCard() {
   let editButtons = document.querySelectorAll('.reserwation__edit-btn');
-  console.log(editButtons);
+  // console.log(editButtons);
 
 
   editButtons.forEach(function (button) {
@@ -28,7 +28,7 @@ export default function editCard() {
       //   editObject.doctor,
       //   editObject.id
       // );
-      console.log(editObject);  
+      // console.log(editObject);  
       // editObject.createElement();
       // editObject.renderVisit();
 

@@ -34,7 +34,7 @@ export default function cardFilter() {
 
     displayResults(filteredArray);
     deleteCard(filteredArray);
-    cardEditor(CardsData);
+    // cardEditor(CardsData);
   }
 
   function displayResults(filteredArray) {
