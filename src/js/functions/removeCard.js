@@ -1,23 +1,29 @@
+import CardsData from "./cardsData.js";
+import removeCardAPI from "../API/removeCardAPI.js";
 
-// у функцію треба передвавати головний array замість filteredArray
+const container = document.querySelector('.reserwation__container');
+const observer = new MutationObserver(() => {
+  deleteCard();
+});
+const config = { childList: true, subtree: true };
+observer.observe(container, config);
 
-export default function deleteCard(filteredArray) {
-
+export default function deleteCard() {
   let deleteButtons = document.querySelectorAll('.reserwation__delete-btn');
+  console.log(deleteButtons);
+  console.log(CardsData);
 
   deleteButtons.forEach(function (button) {
     button.addEventListener('click', function (event) {
       event.preventDefault();
       let cardContainer = this.closest('.reserwation__card-container');
-      cardContainer.remove();
-      const deleteObject = filteredArray.find(item => item.id === cardContainer);
-      filteredArray.splice(deleteObject, 1);
-
-      // вставити POST запит на видалення картки з сервера
       
-      return filteredArray
+      
+      const deleteObject = CardsData.find(item => item.id === cardContainer);
+      CardsData.splice(deleteObject, 1);
+
+      removeCardAPI(cardContainer.id)
+      cardContainer.remove();
     });
   });
-  
 }
-

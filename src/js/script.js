@@ -16,7 +16,7 @@ import editCard from './functions/cardEditor.js';
 
 cardFilter();
 checkToken();
-deleteCard();
+/*Тимошенко переніс функцію делєйт у кінець*/
 editCard();
 
 
@@ -48,9 +48,8 @@ loginBtn.addEventListener("click", (event) => {
   CardsData.forEach(el => {
     console.log(el);
     const { description, doctor, fullname, id, purpose, urgency } = el;
-    new CardHtml(purpose, description, urgency, fullname, doctor).render();
+    new CardHtml(purpose, description, urgency, fullname, doctor, id).render();
     });
-
 
   };
 
@@ -144,3 +143,5 @@ addElemBtn.addEventListener("click", (event) => {
   });
 
 });
+
+deleteCard(CardsData);
