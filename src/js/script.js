@@ -18,6 +18,7 @@ import editCard from './functions/cardEditor.js';
 
 
 let cloneArray = [];
+
 if (localStorage.getItem('token')) {
   
   // const { data: resp } = await fetchData();
@@ -25,9 +26,9 @@ if (localStorage.getItem('token')) {
 
   // CardsData.splice(0, CardsData.length, ...cloneArray);
   CardsData.forEach(el => {
-    const { description, doctor, fullname, id, purpose, urgency } = el;
-    new CardHtml(purpose, description, urgency, fullname, doctor, id).render();
-  })
+    const { description, doctor, fullName, id, purpose, urgency } = el;
+    new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
+  });
 } else {
   const loginBtn = document.querySelector('.js-login-btn');
 
@@ -53,8 +54,8 @@ if (localStorage.getItem('token')) {
       CardsData.splice(0, CardsData.length, ...cloneArray);
 
       CardsData.forEach(el => {
-        const { description, doctor, fullname, id, purpose, urgency } = el;
-        new CardHtml(purpose, description, urgency, fullname, doctor, id).render();
+        const { description, doctor, fullName, id, purpose, urgency } = el;
+        new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
       });
 
     };
@@ -103,6 +104,9 @@ addElemBtn.addEventListener("click", (event) => {
 
         CardsData.push(body);
 
+        const { description, doctor, fullName, id, purpose, urgency } = body;
+        new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
+
         console.log(CardsData);
         const {
           data
@@ -121,6 +125,8 @@ addElemBtn.addEventListener("click", (event) => {
 
         CardsData.push(body);
 
+        const { description, doctor, fullName, id, purpose, urgency } = body;
+        new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
         const {
           data
         } = await createCardAPI(body);
@@ -138,6 +144,8 @@ addElemBtn.addEventListener("click", (event) => {
 
         CardsData.push(body);
 
+        const { description, doctor, fullName, id, purpose, urgency } = body;
+        new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
         const {
           data
         } = await createCardAPI(body);
