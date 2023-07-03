@@ -24,7 +24,7 @@ const loginBtn = document.querySelector('.js-login-btn');
 const addElemBtn = document.querySelector('.js-create-elem-btn');
 
 let cloneArray = [];
-console.log(cloneArray);
+
 
 loginBtn.addEventListener("click", (event) => {
   event.preventDefault();
@@ -42,23 +42,20 @@ loginBtn.addEventListener("click", (event) => {
    cloneArray = [...resp];
    close();
    checkToken();
+
    CardsData.splice(0, CardsData.length, ...cloneArray);
-
-   console.log(CardsData);
-
 
   CardsData.forEach(el => {
     console.log(el);
-    const { description, doctor, fullName, id, purpose, urgency } = el;
-    console.log(fullName);
-    new CardHtml(purpose, description, urgency, fullName, doctor, id).render(); /*Тимошенко додав id*/
+    const { description, doctor, fullname, id, purpose, urgency } = el;
+    new CardHtml(purpose, description, urgency, fullname, doctor, id).render();
     });
 
   };
 
   new Modal(form.getFormElement(), confirmCallback).render();
 });
-
+console.log(CardsData);
 
 // if localstorage token === true  => CardsData.forEach(el....... (йди до файлу chekToken.js) cardsData записати в окрему функцію.
 
@@ -131,7 +128,7 @@ addElemBtn.addEventListener("click", (event) => {
             const body = form.getValues();
     
             CardsData.push(body);
-            
+
             const {
               data
             } = await createCardAPI(body);
