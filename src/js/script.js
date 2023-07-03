@@ -72,7 +72,7 @@ editCard();
 
 
 
-console.log(CardsData);
+export default CardsData;
 
 // if localstorage token === true  => CardsData.forEach(el....... (йди до файлу chekToken.js) cardsData записати в окрему функцію.
 

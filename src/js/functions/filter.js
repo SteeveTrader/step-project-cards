@@ -1,6 +1,8 @@
-// import CardHtml from "../classes/cardHtml.js";
+import CardHtml from '../classes/CardHtml.js';
 import deleteCard from '../functions/removeCard.js';
-import CardsData from "./cardsData.js";
+import CardsData from "../script.js";
+
+
 export default function cardFilter() {
 
 
