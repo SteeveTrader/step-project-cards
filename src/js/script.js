@@ -14,53 +14,64 @@ import CardsData from './functions/cardsData.js';
 import deleteCard from './functions/removeCard.js';
 import editCard from './functions/cardEditor.js';
 
+let cloneArray = [];
+if (localStorage.getItem('token')) {
+  const { data: resp } = await fetchData();
+  cloneArray = [...resp];
+
+  CardsData.splice(0, CardsData.length, ...cloneArray);
+  CardsData.forEach(el => {
+    const { description, doctor, fullname, id, purpose, urgency } = el;
+    new CardHtml(purpose, description, urgency, fullname, doctor, id).render();
+  })
+} else {
+  const loginBtn = document.querySelector('.js-login-btn');
+
+
+
+  loginBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    const form = new LoginForm("Log In");
+
+    const confirmCallback = async (close) => {
+      const body = form.getValues();
+
+      const {
+        data
+      } = await loginFunction(body);
+      localStorage.setItem("token", data);
+
+      const { data: resp } = await fetchData();
+      cloneArray = [...resp];
+      close();
+      checkToken();
+
+      CardsData.splice(0, CardsData.length, ...cloneArray);
+
+      CardsData.forEach(el => {
+        const { description, doctor, fullname, id, purpose, urgency } = el;
+        new CardHtml(purpose, description, urgency, fullname, doctor, id).render();
+      });
+
+    };
+
+    new Modal(form.getFormElement(), confirmCallback).render();
+  });
+}
+
 cardFilter();
 checkToken();
 /*Тимошенко переніс функцію делєйт у кінець*/
 editCard();
 
 
-const loginBtn = document.querySelector('.js-login-btn');
-const addElemBtn = document.querySelector('.js-create-elem-btn');
 
-let cloneArray = [];
-
-
-loginBtn.addEventListener("click", (event) => {
-  event.preventDefault();
-  const form = new LoginForm("Log In");
-
-  const confirmCallback = async (close) => {
-    const body = form.getValues();
- 
-   const {
-     data
-   } = await loginFunction(body);
-   localStorage.setItem("token", data);
-
-   const { data: resp} =  await fetchData();
-   cloneArray = [...resp];
-   close();
-   checkToken();
-
-   CardsData.splice(0, CardsData.length, ...cloneArray);
-
-  CardsData.forEach(el => {
-    console.log(el);
-    const { description, doctor, fullname, id, purpose, urgency } = el;
-    new CardHtml(purpose, description, urgency, fullname, doctor, id).render();
-    });
-
-  };
-
-  new Modal(form.getFormElement(), confirmCallback).render();
-});
 console.log(CardsData);
 
 // if localstorage token === true  => CardsData.forEach(el....... (йди до файлу chekToken.js) cardsData записати в окрему функцію.
 
 
-
+const addElemBtn = document.querySelector('.js-create-elem-btn');
 addElemBtn.addEventListener("click", (event) => {
   event.preventDefault();
 
@@ -72,73 +83,73 @@ addElemBtn.addEventListener("click", (event) => {
   };
 
   const doctorModal = new Modal(form.getFormElement(), confirmCallback);
-        doctorModal.render();
+  doctorModal.render();
 
   const modalSelect = document.querySelector('.modal__select');
 
   modalSelect.addEventListener("change", (event) => {
     event.preventDefault();
     const selectedDoctor = modalSelect.value;
-    if (selectedDoctor === 'cardiologist' || 
-        selectedDoctor === 'dentist' || 
-        selectedDoctor === 'therapist') {
-          doctorModal.close();
+    if (selectedDoctor === 'cardiologist' ||
+      selectedDoctor === 'dentist' ||
+      selectedDoctor === 'therapist') {
+      doctorModal.close();
     }
 
     if (selectedDoctor === 'cardiologist') {
 
-          const form = new VisitCardiologist("Cardiologist");
+      const form = new VisitCardiologist("Cardiologist");
 
-          const confirmCallback = async (close) => {
-            const body = form.getValues();
-          
-            CardsData.push(body);
+      const confirmCallback = async (close) => {
+        const body = form.getValues();
 
-            console.log(CardsData);
-            const {
-              data
-            } = await createCardAPI(body);
+        CardsData.push(body);
 
-            close();
-            checkToken();
-          };
+        console.log(CardsData);
+        const {
+          data
+        } = await createCardAPI(body);
 
-          new Modal(form.getFormElement(), confirmCallback).render();
-        } else if (selectedDoctor === 'dentist') {
-          const form = new VisitDentist("Dentist");
-          
-          const confirmCallback = async (close) => {
-            const body = form.getValues();
-            
-            CardsData.push(body);
-    
-            const {
-              data
-            } = await createCardAPI(body);
+        close();
+        checkToken();
+      };
 
-            close();
-            checkToken();
-          };
+      new Modal(form.getFormElement(), confirmCallback).render();
+    } else if (selectedDoctor === 'dentist') {
+      const form = new VisitDentist("Dentist");
 
-          new Modal(form.getFormElement(), confirmCallback).render();
-        } else if (selectedDoctor === 'therapist') {
-          const form = new VisitTherapist("Therapist");
+      const confirmCallback = async (close) => {
+        const body = form.getValues();
 
-          const confirmCallback = async (close) => {
-            const body = form.getValues();
-    
-            CardsData.push(body);
+        CardsData.push(body);
 
-            const {
-              data
-            } = await createCardAPI(body);
+        const {
+          data
+        } = await createCardAPI(body);
 
-            close();
-            checkToken();
-          };
+        close();
+        checkToken();
+      };
 
-          new Modal(form.getFormElement(), confirmCallback).render();
-        }
+      new Modal(form.getFormElement(), confirmCallback).render();
+    } else if (selectedDoctor === 'therapist') {
+      const form = new VisitTherapist("Therapist");
+
+      const confirmCallback = async (close) => {
+        const body = form.getValues();
+
+        CardsData.push(body);
+
+        const {
+          data
+        } = await createCardAPI(body);
+
+        close();
+        checkToken();
+      };
+
+      new Modal(form.getFormElement(), confirmCallback).render();
+    }
 
   });
 
