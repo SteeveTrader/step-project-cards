@@ -12,6 +12,7 @@ export default class VisitCardiologist extends VisitForm {
     // this.form.insertAdjacentHTML('beforeend', this.visitInpputs);   
 
     this.additionalInputs = `
+        <input type="text" required name="doctor"  value="Cardiologist" disabled="true" placeholder="Cardiologist">
         <input type="text" required name="age" placeholder="Age">
         <input type="text" required name="blood-press" placeholder="Blood pressure">
         <input type="text" required name="body-index" placeholder="Body Index">

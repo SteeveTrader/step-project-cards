@@ -17,18 +17,32 @@ import deleteCard from './functions/removeCard.js';
 import editCard from './functions/cardEditor.js';
 
 
-let cloneArray = [];
+// let cloneArray = [];
+
+const cloneArray = (arr) => {
+  CardsData.splice(0, CardsData.length, ...arr);
+};
 
 if (localStorage.getItem('token')) {
   
+  if (CardsData.length === 0) {
+    fetchData().then( (data) => {
+      cloneArray(data.data);
+    CardsData.forEach(el => {
+        const { description, doctor, fullName, id, purpose, urgency } = el;
+        new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
+      });
+      deleteCard();
+    } 
+    );
+
+  }
   // const { data: resp } = await fetchData();
+  // console.log(object);
   // cloneArray = [...resp];
 
   // CardsData.splice(0, CardsData.length, ...cloneArray);
-  CardsData.forEach(el => {
-    const { description, doctor, fullName, id, purpose, urgency } = el;
-    new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
-  });
+  
 } else {
   const loginBtn = document.querySelector('.js-login-btn');
 
@@ -47,17 +61,17 @@ if (localStorage.getItem('token')) {
       localStorage.setItem("token", data);
 
       const { data: resp } = await fetchData();
-      cloneArray = [...resp];
+      cloneArray(data.data);
       close();
       checkToken();
 
-      CardsData.splice(0, CardsData.length, ...cloneArray);
+      // CardsData.splice(0, CardsData.length, ...cloneArray);
 
       CardsData.forEach(el => {
         const { description, doctor, fullName, id, purpose, urgency } = el;
         new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
       });
-
+      deleteCard();
     };
 
     new Modal(form.getFormElement(), confirmCallback).render();
@@ -163,4 +177,3 @@ addElemBtn.addEventListener("click", (event) => {
 });
 
 checkToken();
-deleteCard(CardsData);
