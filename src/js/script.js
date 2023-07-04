@@ -24,6 +24,7 @@ const cloneArray = (arr) => {
 };
 
 if (localStorage.getItem('token')) {
+
   
   if (CardsData.length === 0) {
     fetchData().then( (data) => {
@@ -43,6 +44,7 @@ if (localStorage.getItem('token')) {
 
   // CardsData.splice(0, CardsData.length, ...cloneArray);
   
+
 } else {
   const loginBtn = document.querySelector('.js-login-btn');
 
