@@ -18,15 +18,10 @@ export default function editCard() {
       modalEditContainer.innerText = "Редагування візиту";
       modalEditContainer.classList.add("modalEditContainer");
       reserwationContainer.append(modalEditContainer);
-console.log(editObject);
+    console.log(editObject);
       for (let key in editObject) {
         if (key == 'id') {
           continue;
-          // const keyValue = document.createElement("p");
-          // keyValue.innerText = `${editObject[key]}`;
-          // keyValue.setAttribute("name", `${key}`);
-          // console.log(editObject[key]);
-          // modalEditContainer.append(keyValue);
         }
 
         if (key == 'doctor') {

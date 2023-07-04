@@ -13,7 +13,7 @@ a {
     background-image: url(../../img/bg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    width: 1200px;
+    max-width: 1200px;
     min-height: 1200px;
 }
 
@@ -27,7 +27,7 @@ a {
     padding: 100px 24px 24px 24px;
     flex-wrap: wrap;
     gap: 45px;
-    /* flex-direction: column; */
+
 }
 
 .reserwation__card-container {

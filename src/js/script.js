@@ -1,8 +1,8 @@
-import Modal from './classes/Modal.js';
+import Modal from './classes/modal.js';
 import SelectDoctor from './classes/selectDoctor.js';
-import VisitCardiologist from './classes/VisitCardiologist.js';
-import VisitDentist from './classes/VisitDantist.js';
-import VisitTherapist from './classes/VisitTherapist.js';
+import VisitCardiologist from './classes/visitCardiologist.js';
+import VisitDentist from './classes/visitDantist.js';
+import VisitTherapist from './classes/visitTherapist.js';
 import CardHtml from './classes/CardHtml.js';
 import loginFunction from './API/logInFunction.js';
 import createCardAPI from './API/createCard.js';
@@ -14,10 +14,8 @@ import cardFilter from "./functions/filter.js";
 import checkToken from './functions/checkToken.js';
 import CardsData from './functions/cardsData.js';
 import deleteCard from './functions/removeCard.js';
-import editCard from './functions/cardEditor.js';
+import editCard from './functions/editCard.js';
 
-
-// let cloneArray = [];
 
 const cloneArray = (arr) => {
   CardsData.splice(0, CardsData.length, ...arr);
@@ -34,22 +32,13 @@ if (localStorage.getItem('token')) {
         new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
       });
       deleteCard();
+      editCard();
     } 
     );
 
   }
-  // const { data: resp } = await fetchData();
-  // console.log(object);
-  // cloneArray = [...resp];
-
-  // CardsData.splice(0, CardsData.length, ...cloneArray);
-  
-
 } else {
   const loginBtn = document.querySelector('.js-login-btn');
-
-
-
   loginBtn.addEventListener("click", (event) => {
     event.preventDefault();
     const form = new LoginForm("Log In");
@@ -63,26 +52,22 @@ if (localStorage.getItem('token')) {
       localStorage.setItem("token", data);
 
       const { data: resp } = await fetchData();
-      cloneArray(data.data);
+      cloneArray( resp );
       close();
       checkToken();
-
-      // CardsData.splice(0, CardsData.length, ...cloneArray);
 
       CardsData.forEach(el => {
         const { description, doctor, fullName, id, purpose, urgency } = el;
         new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
       });
-      deleteCard();
+
     };
 
     new Modal(form.getFormElement(), confirmCallback).render();
   });
 }
 
-cardFilter();
-checkToken();
-editCard();
+
 
 
 
@@ -178,4 +163,5 @@ addElemBtn.addEventListener("click", (event) => {
 
 });
 
+cardFilter();
 checkToken();

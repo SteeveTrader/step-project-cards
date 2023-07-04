@@ -1,4 +1,4 @@
-import VisitForm from "./makeVisitForm.js";
+import VisitForm from "./visitForm.js";
 export default class VisitDentist extends VisitForm {
   constructor(title) {
     super(title);
