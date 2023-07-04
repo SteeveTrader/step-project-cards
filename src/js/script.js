@@ -14,10 +14,7 @@ import cardFilter from "./functions/filter.js";
 import checkToken from './functions/checkToken.js';
 import CardsData from './functions/cardsData.js';
 import deleteCard from './functions/removeCard.js';
-import editCard from './functions/cardEditor.js';
-import EditForm from './classes/editForm.js';
-
-let editButtons;
+import editCardFunc from './functions/editCardFunction.js';
 
 const cloneArray = (arr) => {
   CardsData.splice(0, CardsData.length, ...arr);
@@ -38,29 +35,8 @@ if (localStorage.getItem('token')) {
         } = el;
         new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
       });
-
-
-
-      editButtons = document.querySelectorAll('.reserwation__edit-btn');
-      editButtons.forEach(button => {
-        button.onclick = function () {
-          
-          let cardContainer = this.closest('.reserwation__card-container');
-          let cardId = cardContainer.id;
-          let editItem = CardsData.find(item => item.id == cardId);
-          console.log(editItem);
-          // const form = new EditForm("Edit this Card", editItem);
-          const confirmCallback = (close) => {
-
-            close();
-          };
-
-          new Modal(form.getEditElement(), confirmCallback).render();
-        };
-
-      });
       deleteCard();
-      editCard();
+      editCardFunc();
     });
 
 
