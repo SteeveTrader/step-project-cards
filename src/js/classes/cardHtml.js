@@ -45,7 +45,7 @@ export default class CardHtml {
         `;
 
         this.btnContainer.append(this.editBtn, this.deleteBtn);
-        this.cardDoctorContainer.insertAdjacentHTML("afterbegin", `<h2>${this.doctor}</h2>`);
+        this.cardDoctorContainer.insertAdjacentHTML("afterbegin", `<h2 class="doctorFilter">${this.doctor}</h2>`);
         this.cardDoctorContainer.append(this.btnContainer);
         this.card.append(this.cardDoctorContainer);
         this.card.insertAdjacentHTML("beforeend", `<p class="reserwation__card-patient-name">${this.fullName}</p>`);
