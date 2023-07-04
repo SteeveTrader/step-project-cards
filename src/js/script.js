@@ -16,6 +16,8 @@ import CardsData from './functions/cardsData.js';
 import deleteCard from './functions/removeCard.js';
 import editCardFunc from './functions/editCardFunction.js';
 
+deleteCard();
+editCardFunc();
 const cloneArray = (arr) => {
   CardsData.splice(0, CardsData.length, ...arr);
 };
