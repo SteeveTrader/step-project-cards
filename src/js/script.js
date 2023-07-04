@@ -14,7 +14,7 @@ import cardFilter from "./functions/filter.js";
 import checkToken from './functions/checkToken.js';
 import CardsData from './functions/cardsData.js';
 import deleteCard from './functions/removeCard.js';
-import editCard from './functions/editCard.js';
+// import editCard from './functions/editCard.js';
 
 
 const cloneArray = (arr) => {
@@ -32,7 +32,6 @@ if (localStorage.getItem('token')) {
         new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
       });
       deleteCard();
-      editCard();
     } 
     );
 
