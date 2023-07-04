@@ -1,6 +1,6 @@
 import CardHtml from '../classes/CardHtml.js';
 import deleteCard from '../functions/removeCard.js';
-import CardsData from "../script.js";
+import CardsData from "../functions/cardsData.js";
 
 
 export default function cardFilter() {
@@ -36,7 +36,7 @@ export default function cardFilter() {
 
     displayResults(filteredArray);
     deleteCard(filteredArray);
-    cardEditor(CardsData);
+    // cardEditor(CardsData);
   }
 
   function displayResults(filteredArray) {

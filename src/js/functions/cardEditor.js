@@ -2,10 +2,12 @@ import CardsData from "./cardsData.js";
 
 export default function editCard() {
   let editButtons = document.querySelectorAll('.reserwation__edit-btn');
+
   editButtons.forEach(function (button) {
     button.addEventListener('click', function (event) {
       event.preventDefault();
       let cardContainer = this.closest('.reserwation__card-container');
+
       let cardId = cardContainer.id;
       let editObject = CardsData.find(item => item.id == cardId);
       const reserwationContainer = document.querySelector(".reserwation")
@@ -75,6 +77,8 @@ console.log(editObject);
           console.log(input.getAttribute('name') + ': ' + input.value);
         });
       });
+
+
 
     });
   });

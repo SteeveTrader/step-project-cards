@@ -7,23 +7,44 @@ import CardHtml from './classes/CardHtml.js';
 import loginFunction from './API/logInFunction.js';
 import createCardAPI from './API/createCard.js';
 import LoginForm from './classes/LoginForm.js';
-import { fetchData } from './API/serverRequest.js';
+import {
+  fetchData
+} from './API/serverRequest.js';
 import cardFilter from "./functions/filter.js";
 import checkToken from './functions/checkToken.js';
 import CardsData from './functions/cardsData.js';
 import deleteCard from './functions/removeCard.js';
 import editCard from './functions/cardEditor.js';
 
-let cloneArray = [];
-if (localStorage.getItem('token')) {
-  const { data: resp } = await fetchData();
-  cloneArray = [...resp];
 
-  CardsData.splice(0, CardsData.length, ...cloneArray);
-  CardsData.forEach(el => {
-    const { description, doctor, fullName, id, purpose, urgency } = el;
-    new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
-  })
+// let cloneArray = [];
+
+const cloneArray = (arr) => {
+  CardsData.splice(0, CardsData.length, ...arr);
+};
+
+if (localStorage.getItem('token')) {
+
+  
+  if (CardsData.length === 0) {
+    fetchData().then( (data) => {
+      cloneArray(data.data);
+    CardsData.forEach(el => {
+        const { description, doctor, fullName, id, purpose, urgency } = el;
+        new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
+      });
+      deleteCard();
+    } 
+    );
+
+  }
+  // const { data: resp } = await fetchData();
+  // console.log(object);
+  // cloneArray = [...resp];
+
+  // CardsData.splice(0, CardsData.length, ...cloneArray);
+  
+
 } else {
   const loginBtn = document.querySelector('.js-login-btn');
 
@@ -42,17 +63,17 @@ if (localStorage.getItem('token')) {
       localStorage.setItem("token", data);
 
       const { data: resp } = await fetchData();
-      cloneArray = [...resp];
+      cloneArray(data.data);
       close();
       checkToken();
 
-      CardsData.splice(0, CardsData.length, ...cloneArray);
+      // CardsData.splice(0, CardsData.length, ...cloneArray);
 
       CardsData.forEach(el => {
         const { description, doctor, fullName, id, purpose, urgency } = el;
         new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
       });
-
+      deleteCard();
     };
 
     new Modal(form.getFormElement(), confirmCallback).render();
@@ -61,14 +82,8 @@ if (localStorage.getItem('token')) {
 
 cardFilter();
 checkToken();
-/*Тимошенко переніс функцію делєйт у кінець*/
 editCard();
 
-
-
-export default CardsData;
-
-// if localstorage token === true  => CardsData.forEach(el....... (йди до файлу chekToken.js) cardsData записати в окрему функцію.
 
 
 const addElemBtn = document.querySelector('.js-create-elem-btn');
@@ -105,6 +120,9 @@ addElemBtn.addEventListener("click", (event) => {
 
         CardsData.push(body);
 
+        const { description, doctor, fullName, id, purpose, urgency } = body;
+        new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
+
         console.log(CardsData);
         const {
           data
@@ -123,6 +141,8 @@ addElemBtn.addEventListener("click", (event) => {
 
         CardsData.push(body);
 
+        const { description, doctor, fullName, id, purpose, urgency } = body;
+        new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
         const {
           data
         } = await createCardAPI(body);
@@ -140,11 +160,14 @@ addElemBtn.addEventListener("click", (event) => {
 
         CardsData.push(body);
 
+        const { description, doctor, fullName, id, purpose, urgency } = body;
+        new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
         const {
           data
         } = await createCardAPI(body);
 
         close();
+        console.log(CardsData);
         checkToken();
       };
 
@@ -155,4 +178,4 @@ addElemBtn.addEventListener("click", (event) => {
 
 });
 
-deleteCard(CardsData);
+checkToken();
