@@ -14,17 +14,20 @@ import cardFilter from "./functions/filter.js";
 import checkToken from './functions/checkToken.js';
 import CardsData from './functions/cardsData.js';
 import deleteCard from './functions/removeCard.js';
+import emptyNotification from './functions/emptyNotification.js';
 // import editCard from './functions/editCard.js';
-
+// emptyNotification();
 
 const cloneArray = (arr) => {
   CardsData.splice(0, CardsData.length, ...arr);
+    
 };
 
 if (localStorage.getItem('token')) {
 
-  
+
   if (CardsData.length === 0) {
+    
     fetchData().then( (data) => {
       cloneArray(data.data);
     CardsData.forEach(el => {
@@ -32,16 +35,19 @@ if (localStorage.getItem('token')) {
         new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
       });
       deleteCard();
+      
     } 
     );
 
   }
 } else {
+  
   const loginBtn = document.querySelector('.js-login-btn');
   loginBtn.addEventListener("click", (event) => {
     event.preventDefault();
+    
     const form = new LoginForm("Log In");
-
+    
     const confirmCallback = async (close) => {
       const body = form.getValues();
 
@@ -49,20 +55,21 @@ if (localStorage.getItem('token')) {
         data
       } = await loginFunction(body);
       localStorage.setItem("token", data);
-
+      
       const { data: resp } = await fetchData();
       cloneArray( resp );
       close();
       checkToken();
-
+      
       CardsData.forEach(el => {
         const { description, doctor, fullName, id, purpose, urgency } = el;
         new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
       });
-
+emptyNotification();
     };
 
     new Modal(form.getFormElement(), confirmCallback).render();
+    
   });
 }
 
@@ -73,12 +80,13 @@ if (localStorage.getItem('token')) {
 const addElemBtn = document.querySelector('.js-create-elem-btn');
 addElemBtn.addEventListener("click", (event) => {
   event.preventDefault();
-
+emptyNotification();
   const form = new SelectDoctor("Create Visit");
 
   const confirmCallback = (close) => {
     close();
     checkToken();
+    
   };
 
   const doctorModal = new Modal(form.getFormElement(), confirmCallback);
@@ -111,11 +119,13 @@ addElemBtn.addEventListener("click", (event) => {
         const {
           data
         } = await createCardAPI(body);
-
+        
         close();
         checkToken();
+        emptyNotification()
+        
       };
-
+      
       new Modal(form.getFormElement(), confirmCallback).render();
     } else if (selectedDoctor === 'dentist') {
       const form = new VisitDentist("Dentist");
@@ -124,7 +134,6 @@ addElemBtn.addEventListener("click", (event) => {
         const body = form.getValues();
 
         CardsData.push(body);
-
         const { description, doctor, fullName, id, purpose, urgency } = body;
         new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
         const {
@@ -164,3 +173,4 @@ addElemBtn.addEventListener("click", (event) => {
 
 cardFilter();
 checkToken();
+

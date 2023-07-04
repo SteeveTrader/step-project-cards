@@ -30,6 +30,15 @@ a {
 
 }
 
+@media (max-width: 1200px) {
+    .reserwation__container {
+        padding-top: 150px;
+
+    }
+
+
+}
+
 .reserwation__card-container {
     display: flex;
     justify-content: start;
