@@ -14,26 +14,55 @@ import cardFilter from "./functions/filter.js";
 import checkToken from './functions/checkToken.js';
 import CardsData from './functions/cardsData.js';
 import deleteCard from './functions/removeCard.js';
-// import editCard from './functions/editCard.js';
+import editCard from './functions/cardEditor.js';
+import EditForm from './classes/editForm.js';
 
+let editButtons;
 
 const cloneArray = (arr) => {
   CardsData.splice(0, CardsData.length, ...arr);
 };
 
 if (localStorage.getItem('token')) {
-
-  
-  if (CardsData.length === 0) {
-    fetchData().then( (data) => {
+  if (CardsData !== CardsData.length) {
+    fetchData().then((data) => {
       cloneArray(data.data);
-    CardsData.forEach(el => {
-        const { description, doctor, fullName, id, purpose, urgency } = el;
+      CardsData.forEach(el => {
+        const {
+          description,
+          doctor,
+          fullName,
+          id,
+          purpose,
+          urgency
+        } = el;
         new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
       });
+
+
+
+      editButtons = document.querySelectorAll('.reserwation__edit-btn');
+      editButtons.forEach(button => {
+        button.onclick = function () {
+          
+          let cardContainer = this.closest('.reserwation__card-container');
+          let cardId = cardContainer.id;
+          let editItem = CardsData.find(item => item.id == cardId);
+          console.log(editItem);
+          // const form = new EditForm("Edit this Card", editItem);
+          const confirmCallback = (close) => {
+
+            close();
+          };
+
+          new Modal(form.getEditElement(), confirmCallback).render();
+        };
+
+      });
       deleteCard();
-    } 
-    );
+      editCard();
+    });
+
 
   }
 } else {
@@ -50,13 +79,22 @@ if (localStorage.getItem('token')) {
       } = await loginFunction(body);
       localStorage.setItem("token", data);
 
-      const { data: resp } = await fetchData();
-      cloneArray( resp );
+      const {
+        data: resp
+      } = await fetchData();
+      cloneArray(resp);
       close();
       checkToken();
 
       CardsData.forEach(el => {
-        const { description, doctor, fullName, id, purpose, urgency } = el;
+        const {
+          description,
+          doctor,
+          fullName,
+          id,
+          purpose,
+          urgency
+        } = el;
         new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
       });
 
@@ -65,9 +103,6 @@ if (localStorage.getItem('token')) {
     new Modal(form.getFormElement(), confirmCallback).render();
   });
 }
-
-
-
 
 
 const addElemBtn = document.querySelector('.js-create-elem-btn');
@@ -104,7 +139,14 @@ addElemBtn.addEventListener("click", (event) => {
 
         CardsData.push(body);
 
-        const { description, doctor, fullName, id, purpose, urgency } = body;
+        const {
+          description,
+          doctor,
+          fullName,
+          id,
+          purpose,
+          urgency
+        } = body;
         new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
 
         console.log(CardsData);
@@ -125,7 +167,14 @@ addElemBtn.addEventListener("click", (event) => {
 
         CardsData.push(body);
 
-        const { description, doctor, fullName, id, purpose, urgency } = body;
+        const {
+          description,
+          doctor,
+          fullName,
+          id,
+          purpose,
+          urgency
+        } = body;
         new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
         const {
           data
@@ -144,7 +193,14 @@ addElemBtn.addEventListener("click", (event) => {
 
         CardsData.push(body);
 
-        const { description, doctor, fullName, id, purpose, urgency } = body;
+        const {
+          description,
+          doctor,
+          fullName,
+          id,
+          purpose,
+          urgency
+        } = body;
         new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
         const {
           data
