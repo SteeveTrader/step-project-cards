@@ -4,10 +4,11 @@ export default class VisitTherapist extends VisitForm {
         super(title);
     }
     
-    createElements() {
-        super.createElements();
+    createElement() {
+        super.createElement();
 
         this.additionalInputs = `
+            <input type="text" required name="doctor"  value="Therapist" disabled="true" placeholder="Therapist">
             <input type="number" required name="dateOfBirth" placeholder="Date of Birth">
     
         `;
