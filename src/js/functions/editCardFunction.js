@@ -16,7 +16,7 @@ editButtons = document.querySelectorAll('.reserwation__edit-btn');
 
           const form = new EditForm("Edit this Card", editItem);
           const confirmCallback = async (close) => {
-            const body = form.getValues();
+            const body = form.getEditsValues();
 
             editItem = body;
             console.log(editItem);

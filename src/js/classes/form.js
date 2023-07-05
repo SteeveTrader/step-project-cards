@@ -34,7 +34,24 @@ export default class Form {
         return body;
     }
 
+    getEditsValues() {
+        const inputs = this.form.querySelectorAll('input, select, p');
+        const body = {};
 
+        inputs.forEach((input) => {
+            const name = input.getAttribute('name');
+            const value = input.value;
+
+            if (name === 'id') {
+                const p = input.closest('p');
+                body[name] = p.textContent.replace('ID: ', '');
+            } else {
+                body[name] = value;
+            }
+        });
+
+        return body;
+    }
 
 
     render() {

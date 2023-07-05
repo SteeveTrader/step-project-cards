@@ -52,7 +52,7 @@
     cursor: pointer;
     filter: brightness(.9);
     background-color: #DF1922;
-    background-image: url("assetspng");
+    /* background-image: url("assetspng"); */
 }
 
 .modal__close:active {

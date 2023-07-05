@@ -15,13 +15,17 @@ import checkToken from './functions/checkToken.js';
 import CardsData from './functions/cardsData.js';
 import deleteCard from './functions/removeCard.js';
 import editCardFunc from './functions/editCardFunction.js';
+import emptyNotification from './functions/emptyNotification.js';
 
+CardsData;
 deleteCard();
 editCardFunc();
 const cloneArray = (arr) => {
   CardsData.splice(0, CardsData.length, ...arr);
+  CardsData.length = arr.length
+  console.log(CardsData.length);
 };
-
+console.log(CardsData.length);
 if (localStorage.getItem('token')) {
   if (CardsData !== CardsData.length) {
     fetchData().then((data) => {
@@ -116,7 +120,7 @@ addElemBtn.addEventListener("click", (event) => {
         const body = form.getValues();
 
         CardsData.push(body);
-
+        emptyNotification();
         const {
           description,
           doctor,
@@ -144,6 +148,7 @@ addElemBtn.addEventListener("click", (event) => {
         const body = form.getValues();
 
         CardsData.push(body);
+        emptyNotification();
 
         const {
           description,
@@ -170,6 +175,7 @@ addElemBtn.addEventListener("click", (event) => {
         const body = form.getValues();
 
         CardsData.push(body);
+        emptyNotification();
 
         const {
           description,
