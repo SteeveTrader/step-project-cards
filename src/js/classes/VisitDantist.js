@@ -8,7 +8,7 @@ export default class VisitDentist extends VisitForm {
     super.createElement();
 
     this.additionalInputs = `
-    <input type="text" required name="doctor"  value="Dentist" disabled="true" placeholder="Dentist">
+        <input type="text" required name="doctor"  value="Dentist" disabled="true" placeholder="Dentist">
         <input type="date" required name="lastVisit" placeholder="Last Visit">
 
     `;

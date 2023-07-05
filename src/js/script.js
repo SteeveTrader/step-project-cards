@@ -14,10 +14,16 @@ import cardFilter from "./functions/filter.js";
 import checkToken from './functions/checkToken.js';
 import CardsData from './functions/cardsData.js';
 import deleteCard from './functions/removeCard.js';
+
 import emptyNotification from './functions/emptyNotification.js';
 // import editCard from './functions/editCard.js';
-// emptyNotification();
 
+
+import editCardFunc from './functions/editCardFunction.js';
+
+
+deleteCard();
+editCardFunc();
 const cloneArray = (arr) => {
   CardsData.splice(0, CardsData.length, ...arr);
     
@@ -26,18 +32,26 @@ const cloneArray = (arr) => {
 if (localStorage.getItem('token')) {
 
 
-  if (CardsData.length === 0) {
-    
-    fetchData().then( (data) => {
+  if (CardsData !== CardsData.length) {
+    fetchData().then((data) => {
+
       cloneArray(data.data);
-    CardsData.forEach(el => {
-        const { description, doctor, fullName, id, purpose, urgency } = el;
+      CardsData.forEach(el => {
+        const {
+          description,
+          doctor,
+          fullName,
+          id,
+          purpose,
+          urgency
+        } = el;
         new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
       });
       deleteCard();
-      
-    } 
-    );
+      editCardFunc();
+    });
+
+
 
   }
 } else {
@@ -55,14 +69,25 @@ if (localStorage.getItem('token')) {
         data
       } = await loginFunction(body);
       localStorage.setItem("token", data);
-      
-      const { data: resp } = await fetchData();
-      cloneArray( resp );
+
+
+      const {
+        data: resp
+      } = await fetchData();
+      cloneArray(resp);
+
       close();
       checkToken();
       
       CardsData.forEach(el => {
-        const { description, doctor, fullName, id, purpose, urgency } = el;
+        const {
+          description,
+          doctor,
+          fullName,
+          id,
+          purpose,
+          urgency
+        } = el;
         new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
       });
 emptyNotification();
@@ -72,9 +97,6 @@ emptyNotification();
     
   });
 }
-
-
-
 
 
 const addElemBtn = document.querySelector('.js-create-elem-btn');
@@ -112,7 +134,14 @@ emptyNotification();
 
         CardsData.push(body);
 
-        const { description, doctor, fullName, id, purpose, urgency } = body;
+        const {
+          description,
+          doctor,
+          fullName,
+          id,
+          purpose,
+          urgency
+        } = body;
         new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
 
         console.log(CardsData);
@@ -134,7 +163,18 @@ emptyNotification();
         const body = form.getValues();
 
         CardsData.push(body);
-        const { description, doctor, fullName, id, purpose, urgency } = body;
+
+
+
+        const {
+          description,
+          doctor,
+          fullName,
+          id,
+          purpose,
+          urgency
+        } = body;
+
         new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
         const {
           data
@@ -153,7 +193,14 @@ emptyNotification();
 
         CardsData.push(body);
 
-        const { description, doctor, fullName, id, purpose, urgency } = body;
+        const {
+          description,
+          doctor,
+          fullName,
+          id,
+          purpose,
+          urgency
+        } = body;
         new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
         const {
           data
@@ -172,5 +219,7 @@ emptyNotification();
 });
 
 cardFilter();
+
+=======
 checkToken();
 

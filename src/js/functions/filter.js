@@ -23,6 +23,7 @@ export default function cardFilter() {
         return false;
       }
       if (urgency && item.urgency.toLowerCase() !== urgency) {
+
         return false;
       }
       if (description && !item.description.toLowerCase().includes(description)) {
@@ -35,7 +36,10 @@ export default function cardFilter() {
 
   function displayResults(filteredArray) {
     const cardsBody = document.querySelectorAll('.reserwation__card-container');
-    cardsBody.forEach(elem => elem.remove())
+
+    cardsBody.forEach(elem => elem.remove());
+
+
     filteredArray.forEach(({ purpose, description, urgency, fullName, doctor, id }) => {
       const filterCard = new CardHtml(purpose, description, urgency, fullName, doctor, id);
       filterCard.render();
