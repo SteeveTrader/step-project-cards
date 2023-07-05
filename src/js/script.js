@@ -35,7 +35,7 @@ if (localStorage.getItem('token')) {
           purpose,
           urgency
         } = el;
-        new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
+        new CardHtml(purpose, description, urgency, fullName, doctor, id, CardsData).render();
       });
       deleteCard();
       editCardFunc();
@@ -191,7 +191,8 @@ addElemBtn.addEventListener("click", (event) => {
 
       new Modal(form.getFormElement(), confirmCallback).render();
     }
-
+    deleteCard();
+    editCardFunc();
   });
 
 });
