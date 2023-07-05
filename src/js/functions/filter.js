@@ -17,7 +17,6 @@ export default function cardFilter() {
    
     const filteredArray = CardsData.filter(item => {
       if (doctor && item.doctor.toLowerCase() !== doctor) {
-        
         return false;
       }
       if (fullName && !item.fullName.toLowerCase().includes(fullName)) {
@@ -32,13 +31,14 @@ export default function cardFilter() {
       }
       return true;
     });
-
     displayResults(filteredArray);
   }
 
   function displayResults(filteredArray) {
     const cardsBody = document.querySelectorAll('.reserwation__card-container');
+
     cardsBody.forEach(elem => elem.remove());
+
 
     filteredArray.forEach(({ purpose, description, urgency, fullName, doctor, id }) => {
       const filterCard = new CardHtml(purpose, description, urgency, fullName, doctor, id);

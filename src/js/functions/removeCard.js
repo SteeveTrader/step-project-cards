@@ -1,5 +1,6 @@
 import CardsData from "./cardsData.js";
 import removeCardAPI from "../API/removeCardAPI.js";
+import emptyNotification from "./emptyNotification.js";
 
 // const container = document.querySelector('.reserwation__container');
 // const observer = new MutationObserver(() => {
@@ -19,6 +20,7 @@ export default function deleteCard() {
     //зміна на onklick 
     button.addEventListener('click', function (event) {
       event.preventDefault();
+      
       let cardContainer = this.closest('.reserwation__card-container');
 
       const deleteObject = CardsData.find(item => item.id === cardContainer);
@@ -26,6 +28,7 @@ export default function deleteCard() {
 
       removeCardAPI(cardContainer.id);
       cardContainer.remove();
+      emptyNotification();
     });
   });
 }
