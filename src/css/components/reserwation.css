@@ -84,7 +84,7 @@ a {
 }
 
 .reserwation__edit-btn:hover {
-    filter: brightness(1);
+    filter: brightness(1.5);
 }
 
 .reserwation__card-patient-name {

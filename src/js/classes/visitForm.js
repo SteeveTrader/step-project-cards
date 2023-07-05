@@ -28,27 +28,15 @@ export default class VisitForm extends Form {
     createElement() {
         super.createElement();
 
-        // this.select.setAttribute("name", "doctor");
-        // const options = `
-        //         <option value="" selected="">Chose a doctor</option>
-        //         <option value="cardiologist">Cardiologist</option>
-        //         <option value="dantist">Dantist</option>
-        //         <option value="therapist">Therapist</option>
-        // `;
-
-        // this.select.innerHTML =  options;
         this.form.insertAdjacentHTML('beforeend', this.visitInpputs);   
-        // this.form.insertAdjacentElement('beforeend', this.select);
-        
-        // this.additionalContainer.className = 'inputs-container';
-        // this.form.append(this.additionalContainer);
+
     }
 
 
 
     renderVisit() {
         this.createElement();
-        document.querySelector(".reserwation").append(this.form);
+        document.querySelector(".reserwation").prepend(this.form);
     }
 
 }
