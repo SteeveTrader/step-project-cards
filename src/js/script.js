@@ -15,8 +15,8 @@ import checkToken from './functions/checkToken.js';
 import CardsData from './functions/cardsData.js';
 import deleteCard from './functions/removeCard.js';
 
-import emptyNotification from './functions/emptyNotification.js';
-import editCard from './functions/editCard.js';
+// import emptyNotification from './functions/emptyNotification.js';
+// import editCard from './functions/editCard.js';
 
 
 import editCardFunc from './functions/editCardFunction.js';
@@ -109,7 +109,7 @@ emptyNotification();
 const addElemBtn = document.querySelector('.js-create-elem-btn');
 addElemBtn.addEventListener("click", (event) => {
   event.preventDefault();
-emptyNotification();
+// emptyNotification();
   const form = new SelectDoctor("Create Visit");
 
   const confirmCallback = (close) => {
@@ -158,7 +158,7 @@ emptyNotification();
         
         close();
         checkToken();
-        emptyNotification()
+        // emptyNotification()
         
       };
       
@@ -170,7 +170,7 @@ emptyNotification();
         const body = form.getValues();
 
         CardsData.push(body);
-        emptyNotification();
+        // emptyNotification();
 
 
 
