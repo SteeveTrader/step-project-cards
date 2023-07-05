@@ -20,6 +20,7 @@ deleteCard();
 editCardFunc();
 const cloneArray = (arr) => {
   CardsData.splice(0, CardsData.length, ...arr);
+
 };
 
 if (localStorage.getItem('token')) {
@@ -35,14 +36,16 @@ if (localStorage.getItem('token')) {
           purpose,
           urgency
         } = el;
-        new CardHtml(purpose, description, urgency, fullName, doctor, id, CardsData).render();
+        new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
       });
       deleteCard();
       editCardFunc();
     });
-
+  deleteCard();
+  editCardFunc();
 
   }
+
 } else {
   const loginBtn = document.querySelector('.js-login-btn');
   loginBtn.addEventListener("click", (event) => {
@@ -131,11 +134,12 @@ addElemBtn.addEventListener("click", (event) => {
         const {
           data
         } = await createCardAPI(body);
-
+        // deleteCard();
+        //       editCardFunc();
         close();
         checkToken();
       };
-
+      
       new Modal(form.getFormElement(), confirmCallback).render();
     } else if (selectedDoctor === 'dentist') {
       const form = new VisitDentist("Dentist");
@@ -157,7 +161,8 @@ addElemBtn.addEventListener("click", (event) => {
         const {
           data
         } = await createCardAPI(body);
-
+        // deleteCard();
+        // editCardFunc();
         close();
         checkToken();
       };
@@ -183,16 +188,14 @@ addElemBtn.addEventListener("click", (event) => {
         const {
           data
         } = await createCardAPI(body);
-
+        // deleteCard();
+        // editCardFunc();
         close();
-        console.log(CardsData);
         checkToken();
       };
 
       new Modal(form.getFormElement(), confirmCallback).render();
     }
-    deleteCard();
-    editCardFunc();
   });
 
 });
