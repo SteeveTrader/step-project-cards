@@ -18,9 +18,9 @@ export default function deleteCard() {
   deleteButtons.forEach(function (button) {
 
     //зміна на onklick 
-    button.addEventListener('click', function (event) {
-      event.preventDefault();
-      
+    button.onclick = function () {
+      // event.preventDefault();
+      console.log(this);
       let cardContainer = this.closest('.reserwation__card-container');
 
       const deleteObject = CardsData.find(item => item.id === cardContainer);
@@ -29,7 +29,7 @@ export default function deleteCard() {
       removeCardAPI(cardContainer.id);
       cardContainer.remove();
       emptyNotification();
-    });
-  });
-}
+    };
+});
+};
 

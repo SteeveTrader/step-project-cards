@@ -20,7 +20,7 @@ import deleteCard from './functions/removeCard.js';
 
 
 import editCardFunc from './functions/editCardFunction.js';
-// import emptyNotification from './functions/emptyNotification.js';
+import emptyNotification from './functions/emptyNotification.js';
 
 CardsData;
 
@@ -31,7 +31,6 @@ editCardFunc();
 const cloneArray = (arr) => {
   CardsData.splice(0, CardsData.length, ...arr);
 
-  CardsData.length = arr.length
   console.log(CardsData.length);
 
 };
@@ -39,7 +38,7 @@ console.log(CardsData.length);
 if (localStorage.getItem('token')) {
 
 
-  if (CardsData !== CardsData.length) {
+  // if (CardsData !== CardsData.length) {
     fetchData().then((data) => {
 
       cloneArray(data.data);
@@ -61,7 +60,7 @@ if (localStorage.getItem('token')) {
 
 
   }
-} else {
+ else {
   
   const loginBtn = document.querySelector('.js-login-btn');
   loginBtn.addEventListener("click", (event) => {
@@ -101,6 +100,7 @@ emptyNotification();
     };
 
     new Modal(form.getFormElement(), confirmCallback).render();
+
     
   });
 }
@@ -109,7 +109,7 @@ emptyNotification();
 const addElemBtn = document.querySelector('.js-create-elem-btn');
 addElemBtn.addEventListener("click", (event) => {
   event.preventDefault();
-// emptyNotification();
+emptyNotification();
   const form = new SelectDoctor("Create Visit");
 
   const confirmCallback = (close) => {
@@ -138,9 +138,13 @@ addElemBtn.addEventListener("click", (event) => {
 
       const confirmCallback = async (close) => {
         const body = form.getValues();
+        
+       
+        const {
+          data
+        } = await createCardAPI(body);
 
-        CardsData.push(body);
-        emptyNotification();
+        CardsData.push(data);
         const {
           description,
           doctor,
@@ -148,17 +152,14 @@ addElemBtn.addEventListener("click", (event) => {
           id,
           purpose,
           urgency
-        } = body;
-        new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
-
-        console.log(CardsData);
-        const {
-          data
-        } = await createCardAPI(body);
+        } = data;
         
+        new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
+        deleteCard();
+        editCardFunc();
         close();
         checkToken();
-        // emptyNotification()
+        emptyNotification()
         
       };
       
@@ -169,8 +170,12 @@ addElemBtn.addEventListener("click", (event) => {
       const confirmCallback = async (close) => {
         const body = form.getValues();
 
-        CardsData.push(body);
-        // emptyNotification();
+       
+        const {
+          data
+        } = await createCardAPI(body);
+        CardsData.push(data);
+        
 
 
 
@@ -181,15 +186,14 @@ addElemBtn.addEventListener("click", (event) => {
           id,
           purpose,
           urgency
-        } = body;
+        } = data;
 
         new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
-        const {
-          data
-        } = await createCardAPI(body);
-
+        deleteCard();
+        editCardFunc();
         close();
         checkToken();
+        emptyNotification();
       };
 
       new Modal(form.getFormElement(), confirmCallback).render();
@@ -199,7 +203,11 @@ addElemBtn.addEventListener("click", (event) => {
       const confirmCallback = async (close) => {
         const body = form.getValues();
 
-        CardsData.push(body);
+       
+        const {
+          data
+        } = await createCardAPI(body);
+        CardsData.push(data);
         emptyNotification();
 
         const {
@@ -209,15 +217,15 @@ addElemBtn.addEventListener("click", (event) => {
           id,
           purpose,
           urgency
-        } = body;
+        } = data;
         new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
-        const {
-          data
-        } = await createCardAPI(body);
-
+        deleteCard();
+        editCardFunc();
         close();
         console.log(CardsData);
         checkToken();
+        emptyNotification();
+
       };
 
       new Modal(form.getFormElement(), confirmCallback).render();
@@ -229,4 +237,6 @@ addElemBtn.addEventListener("click", (event) => {
 
 cardFilter();
 checkToken();
+
+
 
