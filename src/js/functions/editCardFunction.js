@@ -13,8 +13,6 @@ editButtons = document.querySelectorAll('.reserwation__edit-btn');
           let cardContainer = this.closest('.reserwation__card-container');
           let cardId = cardContainer.id;
           let editItem = CardsData.find(item => item.id == cardId);
-          console.log(editItem);
-          console.log(cardId);
           const form = new EditForm("Edit this Card", editItem);
           const confirmCallback = async (close) => {
             const body = form.getValues();

@@ -77,5 +77,3 @@ export default class CardHtml {
         this.container.append(this.cardContainer);
     }
 }
-
-
