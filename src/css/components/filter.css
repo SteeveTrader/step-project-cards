@@ -13,7 +13,7 @@
    color: inherit;
  }
 
- .visitDescriptionFilter {
+ .reserwation__filter {
    left: 20%;
    right: 20%;
    position: fixed;
@@ -23,19 +23,19 @@
 
  }
 
- .visitDescriptionFilter label,
- .visitDescriptionFilter input,
- .visitDescriptionFilter select,
- .visitDescriptionFilter button {
+ .reserwation__filter label,
+ .reserwation__filter input,
+ .reserwation__filter select,
+ .reserwation__filter button {
    margin: 5px;
  }
 
- .visitDescriptionFilter input,
- .visitDescriptionFilter select {
+ .reserwation__filter input,
+ .reserwation__filter select {
    padding: 5px;
  }
 
- .visitDescriptionFilter .filterBtn {
+ .reserwation__filter .filterBtn {
    background-color: #007bff;
    color: #fff;
    border: none;
@@ -44,7 +44,7 @@
    border-radius: 15px;
  }
 
- .visitDescriptionFilter .filterBtn:hover {
+ .reserwation__filter .filterBtn:hover {
    background-color: #0056b3;
    border-radius: 15px;
  }
@@ -64,18 +64,33 @@
    font-weight: bold;
  }
 
- .visitDescriptionFilter_inputs {
+ .filterBtn {
+   width: 90%;
+ }
+
+ .reserwation__filter_searshBtn,
+ .reserwation__filter_inputs {
    display: flex;
    align-items: center;
    justify-content: center;
  }
 
- .filterBtn{
-  width: 90%;
- }
+ @media (max-width: 1200px) {
+   .reserwation__filter_inputs {
+      display: grid;
+      grid-template-rows: repeat(2, 1fr);
+      grid-template-columns: repeat(4, 1fr);
+      align-items: center;
+      justify-content: center;
+      column-gap: 50px;
+    }
+  
+    
+  }
+     .reserwation__filter {
+      margin-bottom: 200px;
+     }
+     
+ 
 
- .visitDescriptionFilter_searshBtn{
-  display: flex;
-    align-items: center;
-    justify-content: center;
- }
+ 

@@ -43,10 +43,17 @@
     </header>
 
     <section class="reserwation">
-        <div class="visitDescriptionFilter">
-            <div class="visitDescriptionFilter_inputs">
+
+
+        <!-- filter HTML USE JS. DON'T EDIT!!!!-->
+        <div class="js reserwation__filter">
+            <div class="js reserwation__filter_inputs">
+
                 <label for="visitDiscription">Опис візиту:</label>
-                <input type="text" class="description" id="description">
+                <input type="text" id="description">
+
+                <label for="fullName">Повне ім'я:</label>
+                <input type="text" id="fullNameFilter" class="nameInput">
 
                 <label for="doctor">Лікар:</label>
                 <select id="doctorFilter" class="doctorSelect">
@@ -62,13 +69,25 @@
                     <option value="urgent">Невідкладний</option>
                     <option value="normal">Звичайний</option>
                 </select>
-                <label for="fullName">Повне ім'я:</label>
-                <input type="text" id="fullNameFilter" class="nameInput">
+
             </div>
 
-            <div class="visitDescriptionFilter_searshBtn">
+            <div class="js reserwation__filter_searshBtn">
                 <button class="filterBtn">Фільтрувати</button>
             </div>
+
+
+
+        </div>
+
+        <!-- filter HTML end -->
+        <div class="reserwation__container">
+
+            <div id="modalContainer">
+                <h1 class="reserwation__container-empty-array" style="display: block;">No items have been added</h1>
+            </div>
+            <div id="visitForm"> </div>
+
         </div>
         
         <div id="modalContainer"></div>
