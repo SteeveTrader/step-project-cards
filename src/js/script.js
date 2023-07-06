@@ -29,6 +29,7 @@ CardsData;
 deleteCard();
 editCardFunc();
 const cloneArray = (arr) => {
+
   CardsData.splice(0, CardsData.length, ...arr);
 
   console.log(CardsData.length);
@@ -42,6 +43,7 @@ if (localStorage.getItem('token')) {
     fetchData().then((data) => {
 
       cloneArray(data.data);
+      console.log(CardsData);
       CardsData.forEach(el => {
         const {
           description,
@@ -56,12 +58,10 @@ if (localStorage.getItem('token')) {
       deleteCard();
       editCardFunc();
     });
-
-
-
   }
  else {
   
+
   const loginBtn = document.querySelector('.js-login-btn');
   loginBtn.addEventListener("click", (event) => {
     event.preventDefault();
@@ -144,7 +144,9 @@ emptyNotification();
           data
         } = await createCardAPI(body);
 
+
         CardsData.push(data);
+
         const {
           description,
           doctor,
@@ -155,12 +157,12 @@ emptyNotification();
         } = data;
         
         new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
+
         deleteCard();
         editCardFunc();
         close();
         checkToken();
-        emptyNotification()
-        
+        emptyNotification() 
       };
       
       new Modal(form.getFormElement(), confirmCallback).render();
@@ -191,6 +193,7 @@ emptyNotification();
         new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
         deleteCard();
         editCardFunc();
+
         close();
         checkToken();
         emptyNotification();
@@ -208,7 +211,7 @@ emptyNotification();
           data
         } = await createCardAPI(body);
         CardsData.push(data);
-        emptyNotification();
+
 
         const {
           description,
@@ -219,10 +222,10 @@ emptyNotification();
           urgency
         } = data;
         new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
+
         deleteCard();
         editCardFunc();
         close();
-        console.log(CardsData);
         checkToken();
         emptyNotification();
 
@@ -230,7 +233,6 @@ emptyNotification();
 
       new Modal(form.getFormElement(), confirmCallback).render();
     }
-
   });
 
 });

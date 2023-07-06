@@ -9,7 +9,7 @@ export default class VisitTherapist extends VisitForm {
 
         this.additionalInputs = `
             <input type="text" required name="doctor"  value="Therapist" disabled="true" placeholder="Therapist">
-            <input type="number" required name="dateOfBirth" placeholder="Date of Birth">
+            <input type="date" required name="dateOfBirth" placeholder="Date of Birth">
     
         `;
     
