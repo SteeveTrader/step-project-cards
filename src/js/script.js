@@ -16,17 +16,18 @@ import CardsData from './functions/cardsData.js';
 import deleteCard from './functions/removeCard.js';
 import editCardFunc from './functions/editCardFunction.js';
 
-deleteCard();
-editCardFunc();
-const cloneArray = (arr) => {
-  CardsData.splice(0, CardsData.length, ...arr);
 
+// deleteCard();
+// editCardFunc();
+ export const cloneArray = (arr) => {
+  CardsData.splice(0, CardsData.length, ...arr);
 };
 
 if (localStorage.getItem('token')) {
   if (CardsData !== CardsData.length) {
     fetchData().then((data) => {
       cloneArray(data.data);
+      console.log(CardsData);
       CardsData.forEach(el => {
         const {
           description,
@@ -41,8 +42,6 @@ if (localStorage.getItem('token')) {
       deleteCard();
       editCardFunc();
     });
-  deleteCard();
-  editCardFunc();
 
   }
 
@@ -119,7 +118,7 @@ addElemBtn.addEventListener("click", (event) => {
         const body = form.getValues();
 
         CardsData.push(body);
-
+      
         const {
           description,
           doctor,
@@ -130,12 +129,10 @@ addElemBtn.addEventListener("click", (event) => {
         } = body;
         new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
 
-        console.log(CardsData);
         const {
           data
         } = await createCardAPI(body);
-        // deleteCard();
-        //       editCardFunc();
+        
         close();
         checkToken();
       };
@@ -161,8 +158,6 @@ addElemBtn.addEventListener("click", (event) => {
         const {
           data
         } = await createCardAPI(body);
-        // deleteCard();
-        // editCardFunc();
         close();
         checkToken();
       };
@@ -188,8 +183,6 @@ addElemBtn.addEventListener("click", (event) => {
         const {
           data
         } = await createCardAPI(body);
-        // deleteCard();
-        // editCardFunc();
         close();
         checkToken();
       };
