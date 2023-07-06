@@ -14,18 +14,10 @@ import cardFilter from "./functions/filter.js";
 import checkToken from './functions/checkToken.js';
 import CardsData from './functions/cardsData.js';
 import deleteCard from './functions/removeCard.js';
-
-// import emptyNotification from './functions/emptyNotification.js';
-// import editCard from './functions/editCard.js';
-
-
 import editCardFunc from './functions/editCardFunction.js';
 import emptyNotification from './functions/emptyNotification.js';
 
-CardsData;
 
-
-CardsData;
 deleteCard();
 editCardFunc();
 const cloneArray = (arr) => {
@@ -57,6 +49,7 @@ if (localStorage.getItem('token')) {
       });
       deleteCard();
       editCardFunc();
+      emptyNotification();
     });
   }
  else {
