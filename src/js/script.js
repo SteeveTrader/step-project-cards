@@ -3,13 +3,11 @@ import SelectDoctor from './classes/selectDoctor.js';
 import VisitCardiologist from './classes/visitCardiologist.js';
 import VisitDentist from './classes/visitDantist.js';
 import VisitTherapist from './classes/visitTherapist.js';
-import CardHtml from './classes/CardHtml.js';
+import CardHtml from './classes/cardHtml.js';
 import loginFunction from './API/logInFunction.js';
 import createCardAPI from './API/createCard.js';
-import LoginForm from './classes/LoginForm.js';
-import {
-  fetchData
-} from './API/serverRequest.js';
+import LoginForm from './classes/loginForm.js';
+import fetchData from './API/serverRequest.js';
 import cardFilter from "./functions/filter.js";
 import checkToken from './functions/checkToken.js';
 import CardsData from './functions/cardsData.js';
@@ -18,24 +16,20 @@ import editCardFunc from './functions/editCardFunction.js';
 import emptyNotification from './functions/emptyNotification.js';
 
 
-deleteCard();
-editCardFunc();
+
 const cloneArray = (arr) => {
 
   CardsData.splice(0, CardsData.length, ...arr);
 
-  console.log(CardsData.length);
-
 };
-console.log(CardsData.length);
+
 if (localStorage.getItem('token')) {
 
 
-  // if (CardsData !== CardsData.length) {
     fetchData().then((data) => {
 
       cloneArray(data.data);
-      console.log(CardsData);
+
       CardsData.forEach(el => {
         const {
           description,
@@ -102,13 +96,12 @@ emptyNotification();
 const addElemBtn = document.querySelector('.js-create-elem-btn');
 addElemBtn.addEventListener("click", (event) => {
   event.preventDefault();
-emptyNotification();
+  emptyNotification();
   const form = new SelectDoctor("Create Visit");
 
   const confirmCallback = (close) => {
     close();
     checkToken();
-    
   };
 
   const doctorModal = new Modal(form.getFormElement(), confirmCallback);
@@ -155,7 +148,7 @@ emptyNotification();
         editCardFunc();
         close();
         checkToken();
-        emptyNotification() 
+        emptyNotification();
       };
       
       new Modal(form.getFormElement(), confirmCallback).render();
@@ -186,10 +179,9 @@ emptyNotification();
         new CardHtml(purpose, description, urgency, fullName, doctor, id).render();
         deleteCard();
         editCardFunc();
-
+        emptyNotification();
         close();
         checkToken();
-        emptyNotification();
       };
 
       new Modal(form.getFormElement(), confirmCallback).render();
@@ -221,15 +213,15 @@ emptyNotification();
         close();
         checkToken();
         emptyNotification();
-
       };
 
       new Modal(form.getFormElement(), confirmCallback).render();
     }
   });
-
 });
 
+deleteCard();
+editCardFunc();
 cardFilter();
 checkToken();
 

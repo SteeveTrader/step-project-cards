@@ -1,0 +1,22 @@
+.btn {
+    font-size: 17px;
+    font-weight: 18px;
+    font-weight: 400;
+    width: fit-content;
+    box-sizing: border-box;
+    padding: 5px 17px;
+    border-radius: 5px;
+    cursor: pointer;
+    filter: brightness(.9);
+    background: #fff;
+    color: #132F54;
+    border: unset;
+    outline: none;
+    margin: 0 !important;
+}
+
+.btn:hover {
+    filter: brightness(1);
+    border: 1px solid lightgrey;
+    padding: 4px 16px;
+}

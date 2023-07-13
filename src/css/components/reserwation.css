@@ -8,7 +8,6 @@ a {
 
 
 .reserwation {
-    /* padding-top: 100px; */
     margin: 0 auto;
     background-image: url(../../img/bg.jpg);
     background-size: cover;
@@ -18,7 +17,6 @@ a {
 }
 
 .reserwation__container {
-    
     margin-top: 50px;
     display: flex;
     justify-content: center;
@@ -35,8 +33,6 @@ a {
         padding-top: 150px;
 
     }
-
-
 }
 
 .reserwation__card-container {
