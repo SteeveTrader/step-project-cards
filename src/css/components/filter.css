@@ -1,0 +1,96 @@
+ body {
+   line-height: 1;
+   box-sizing: border-box;
+ }
+
+ ol,
+ ul {
+   list-style: none;
+ }
+
+ a {
+   text-decoration: none;
+   color: inherit;
+ }
+
+ .reserwation__filter {
+   left: 20%;
+   right: 20%;
+   position: fixed;
+   align-items: center;
+   justify-content: center;
+   z-index: 1;
+
+ }
+
+ .reserwation__filter label,
+ .reserwation__filter input,
+ .reserwation__filter select,
+ .reserwation__filter button {
+   margin: 5px;
+ }
+
+ .reserwation__filter input,
+ .reserwation__filter select {
+   padding: 5px;
+ }
+
+ .reserwation__filter .filterBtn {
+   background-color: #007bff;
+   color: #fff;
+   border: none;
+   padding: 10px 20px;
+   cursor: pointer;
+   border-radius: 15px;
+ }
+
+ .reserwation__filter .filterBtn:hover {
+   background-color: #0056b3;
+   border-radius: 15px;
+ }
+
+ .cardContainer {
+   border: 1px solid #007bff;
+   border-radius: 5px;
+   padding: 10px;
+   margin-bottom: 10px;
+ }
+
+ .cardContainer p {
+   margin: 5px;
+ }
+
+ .cardContainer p:first-child {
+   font-weight: bold;
+ }
+
+ .filterBtn {
+   width: 90%;
+ }
+
+ .reserwation__filter_searshBtn,
+ .reserwation__filter_inputs {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+ }
+
+ @media (max-width: 1200px) {
+   .reserwation__filter_inputs {
+      display: grid;
+      grid-template-rows: repeat(2, 1fr);
+      grid-template-columns: repeat(4, 1fr);
+      align-items: center;
+      justify-content: center;
+      column-gap: 50px;
+    }
+  
+    
+  }
+     .reserwation__filter {
+      margin-bottom: 200px;
+     }
+     
+ 
+
+ 

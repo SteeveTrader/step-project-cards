@@ -1,0 +1,61 @@
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+}
+
+label {
+    width: fit-content;
+    white-space: nowrap;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+input, select, textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    border: 1px solid lightgrey;
+}
+
+
+.checkbox-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+
+}
+
+.checkbox-wrapper label {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.checkbox-wrapper input {
+    cursor: pointer;
+    width: auto;
+    margin: 5px 0 0;
+}
+
+h3 {
+    font-size: 25px;
+    font-weight: 28px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #132F54;
+}
+
+h4 {
+    font-size: 18px;
+    font-weight: 19px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #132F54;
+}

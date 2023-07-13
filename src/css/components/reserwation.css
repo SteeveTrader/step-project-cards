@@ -1,0 +1,128 @@
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+.reserwation {
+    /* padding-top: 100px; */
+    margin: 0 auto;
+    background-image: url(../../img/bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    max-width: 1200px;
+    min-height: 1200px;
+}
+
+.reserwation__container {
+    
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 100px 24px 24px 24px;
+    flex-wrap: wrap;
+    gap: 45px;
+
+}
+
+@media (max-width: 1200px) {
+    .reserwation__container {
+        padding-top: 150px;
+
+    }
+
+
+}
+
+.reserwation__card-container {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    min-width: 332px;
+    min-height: 180px;
+    color: #132F54;
+    border-radius: 9px;
+    padding: 15px 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.reserwation__card {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.reserwation__card-doctor {
+    text-align: center;
+    display: flex;
+    gap: 120px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    font-size: 25px;
+    font-weight: 28px;
+    font-weight: 700;
+}
+
+.reserwation__btn-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reserwation__edit-btn,
+.reserwation__delete-btn {
+    background: transparent;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    filter: brightness(.9);
+}
+
+.reserwation__delete-btn:hover {
+    filter: brightness(1);
+}
+
+.reserwation__edit-btn:hover {
+    filter: brightness(1.5);
+}
+
+.reserwation__card-patient-name {
+    font-size: 29px;
+    font-weight: 28px;
+    font-weight: 700;
+    padding: 10px 0 20px;
+}
+
+.reserwation__card-additional-info {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    font-size: 20px;
+    font-weight: 23px;
+    font-weight: 400;
+    padding: 10px 0 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.message {
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+    color: red;
+}
+
+
+
+
