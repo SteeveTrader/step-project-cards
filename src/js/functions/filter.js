@@ -1,4 +1,4 @@
-import CardHtml from '../classes/CardHtml.js';
+import CardHtml from '../classes/cardHtml.js';
 import CardsData from "../functions/cardsData.js";
 
 export default function cardFilter() {
